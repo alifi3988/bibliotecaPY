@@ -49,3 +49,4 @@ class Usuario:
     # toString
     def __str__(self):
         return f"Usuario [nome: '{self.nome}', login: '{self.login}', senha: '{self.senha}', dataCricao: '{self.dataCriacao}', status: '{self.statusAssociativo}']"
+

@@ -11,20 +11,15 @@ def criacaoTB():
         login               VARCHAR(20) NOT NULL UNIQUE,
         senha               TEXT NOT NULL,
         dataCriacao         DATE NOT NULL,
-        statusAssociativo   BOOL NOT NULL
+        statusAssociativo   INTEGER NOT NULL
     );"""
     if criacaoTabelasDB(sql) == True:
         print("Tabela usuarios - ok")
 
 # Inserção de dados
 def inserirUsuario(usuario):
-    print(usuario)
-    pause()
     sql = f'''INSERT INTO tb_usuarios(nome, login, senha, dataCriacao, statusAssociativo) 
-    VALUES ('{usuario.getNome()}','{usuario.getLogin()}','{usuario.getSenha()}','{usuario.getDataCriacao()}','{usuario.getStatusAssociativo()}')'''
-
-    print(sql)
-    pause()
+     VALUES ('{usuario.getNome()}','{usuario.getLogin()}','{usuario.getSenha()}','{usuario.getDataCriacao()}','{usuario.getStatusAssociativo()}')'''
 
     if insercaoDadosTabelas(sql) == True:
         return True
@@ -33,7 +28,4 @@ def inserirUsuario(usuario):
 
 # Recuperação de dados expecíficos
 def recuperarDadosUsuarioExpecifico(login):
-    return
-    f'''SELECT * 
-    FROM tb_usuarios
-    WHERE login = {login}'''
+    return f"SELECT * FROM tb_usuarios WHERE login = '{login}'"
