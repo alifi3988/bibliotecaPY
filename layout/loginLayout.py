@@ -41,8 +41,9 @@ def login():
     for i in tqdm(range(10)):
         time.sleep(1)
 
-    Obj = recuperarDadosExpecificos(recuperarDadosUsuarioExpecifico(login))
-    print(Obj)
+    #Obj = recuperarDadosExpecificos(recuperarDadosUsuarioExpecifico(login))
+    #print(Obj)
+    #
 
     # buscando no banco de dados o valores solictiado, buscará o login, para depois verificar a senha
 
