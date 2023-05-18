@@ -42,7 +42,7 @@ def login():
     print("="*52)
     print("Informe os dados:")
     loginUsuario = input("Login: ").strip()
-    senhaUsuario = input("Senha: ").strip()
+    senhaUsuario = getpass("Senha: ").strip()
     print("="*52)
     print(loginUsuario)
     print(senhaUsuario)
