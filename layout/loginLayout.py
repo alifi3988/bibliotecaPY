@@ -44,22 +44,18 @@ def login():
     loginUsuario = input("Login: ").strip()
     senhaUsuario = getpass("Senha: ").strip()
     print("="*52)
-    print(loginUsuario)
-    print(senhaUsuario)
 
-    lista = list()
-    lista.append(recuperarDadosExpecificos(recuperarDadosUsuarioExpecifico(loginUsuario)))
-    
-    if lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario:
-        print("Dados conferem com o informado!".center(52))
-        nomeUsuario = lista[0][1]
-        finalizacaoApresentacao(nomeUsuario)
-        menuInicial()
-        
-    else:
-        print("Dados não conferem!".center(52))
-        pause()
-        login()
+    lista = recuperarDadosExpecificos(recuperarDadosUsuarioExpecifico(loginUsuario)) # copiando a lista
+    if lista != False:
+        if len(lista) != 0 and lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario:
+            print("Dados conferem com o informado!".center(52))
+            nomeUsuario = lista[0][1]
+            finalizacaoApresentacao(nomeUsuario)
+            menuInicial()
+             
+    print("Dados não conferem!".center(52))
+    pause()
+    login()
 
 # realizando o cadastro de login com o BD
 def cadastroUsuario():

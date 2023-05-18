@@ -45,7 +45,8 @@ def insercaoDadosTabelas(sqlScript):
         conn.commit()
         conn.close()
         return True
-    except:
+    except sqlite3.Error as er:
+        print(er)
         return False
 
 # buscando os dados da table e retornando em forma de lista
@@ -58,17 +59,20 @@ def recuperarDadosExpecificos(sql):
     cursor.execute(sql)
     
     # criando uma lista para armazenar o resultado
- 
+    
+    listaDados = list()
     
     # passando os dados para um objeto
     for linha in cursor.fetchall():
-        dados = linha
+        listaDados.append(linha)
     
     # fechando a conexão
     conn.close()
 
     # retornando uma lista com um dado só, no caso o usuário com o login informado
-    return dados
+    if len(listaDados) == 0:
+        return False
+    return listaDados
 
 # ================================================================================
 # ================================================================================
