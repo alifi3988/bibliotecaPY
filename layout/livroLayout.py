@@ -35,7 +35,6 @@ def cadastroLivro():
         
         # passando os dados para serem passados para serem registrados
         livro = Livro(titulo, autor, editora, anoLancamento, date.today(), True)
-        print(livro)
         
         if insercaoLivro(livro) == True:
             print("Livro foi inserido com sucesso!".center(52))

@@ -19,7 +19,6 @@ def criacaoTB():
 def insercaoLivro(livro):
     sql = f'''INSERT INTO tb_livros(titulo, autor, editora, anoLancamento, registrado, statusAssociativo) 
     VALUES('{livro.getTitulo()}','{livro.getAutor()}','{livro.getEditor()}',{livro.getAnoLancamento()},'{livro.getRegistrado()}','{livro.getStatusAssociativo()}')'''
-    print(sql)
     if insercaoDadosTabelas(sql) == True:
         return True
     else:
