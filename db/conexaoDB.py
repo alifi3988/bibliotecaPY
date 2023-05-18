@@ -46,22 +46,29 @@ def insercaoDadosTabelas(sqlScript):
         conn.close()
         return True
     except:
-        print("Erro para inseir dados na table! (conexaoDB.py)")
-        time.sleep(5)
         return False
 
 # buscando os dados da table e retornando em forma de lista
-def recuperarDadosExpecificos(sqlScript):
-    conn = sqlite3.connect('clientes.db')
+def recuperarDadosExpecificos(sql):
+    # coneção com o banco de dados
+    conn = sqlite3.connect('biblioteca.db')
     cursor = conn.cursor()
 
-    # lendo os dados
-    cursor.execute(sqlScript)
+    # executando sql
+    cursor.execute(sql)
+    
+    # criando uma lista para armazenar o resultado
+ 
+    
+    # passando os dados para um objeto
     for linha in cursor.fetchall():
-        objeto = linha
+        dados = linha
+    
+    # fechando a conexão
     conn.close()
 
-    return objeto
+    # retornando uma lista com um dado só, no caso o usuário com o login informado
+    return dados
 
 # ================================================================================
 # ================================================================================

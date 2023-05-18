@@ -14,14 +14,17 @@ def finalizacaoApresentacao():
 
 def inicialApresentacao():
     os.system("cls")
-    print('''====================================================
-      * * * S I S T E M A    B I B L I O T E C A * * *\n====================================================\nVerificando o banco de dados...\nCarregando os dados pertinentes''')
+    print("====================================================")
+    print(" * * * S I S T E M A    B I B L I O T E C A * * *")
+    print("====================================================")
+    print("Verificando o banco de dados...")
+    print("Carregando os dados pertinentes")
     print('''====================================================''')
     usuarioDB.criacaoTB()
     livroDB.criacaoTB()
     leitoresDB.criacaoTB()
 
-    for i in tqdm(range(10)):
+    for i in tqdm(range(5)):
         time.sleep(1)
     # criação do banco e das tabelas
 
