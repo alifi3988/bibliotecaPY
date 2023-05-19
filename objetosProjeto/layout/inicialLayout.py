@@ -30,5 +30,5 @@ def inicialApresentacao():
     # criação do banco e das tabelas
 
 def finalizacaoApresentacao(nome):
-    str =f'Seja Bem-Vindo(a) ao Sistema, {nome}!'
-    return str
+    print(f'Seja Bem-Vindo(a) ao Sistema, {nome}!'.center(52))
+    time.sleep(2)

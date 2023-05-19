@@ -20,7 +20,7 @@ def criacaoTBLeitores():
 
 # Inserção de dados na tabela
 def insertLeitor(leitor):
-    sql = f'''Insert into tb_leitores (nome, idade, cpf, email, fone, cidade, uf, criacao_em) 
+    sql = f'''Insert into tb_leitores (nome, idade, cpf, email, fone, cidade, uf, criado_em) 
     Values('{leitor.getNome()}', {leitor.getIdade()}, '{leitor.getCpf()}', '{leitor.getEmail()}',
     '{leitor.getTelefone()}', '{leitor.getCidade()}', '{leitor.getUf()}', '{leitor.getData}')'''
 

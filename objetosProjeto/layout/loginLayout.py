@@ -24,7 +24,7 @@ def menuLogin():
     if resposta == "0":
         print("Finalizando o Sistema....")
         #time.sleep()
-        os.close(5)
+        exit()
         
     elif resposta == "1":
         login()
@@ -74,9 +74,13 @@ def cadastroUsuario():
         print("="*52)
         print("* * * C A D A S T R O   U S U Á R I O * * *".center(52))
         print("="*52)
-        print("Informe os dados corretamente")
+        print("Informe os dados corretamente.\nInforme [0] para voltar.")
         nome = input(" Nome: ").strip()
+        if nome == '0':
+            break
         login = input(" Login: ").strip().lower()
+        if login == '0':
+            break
         while(True):
             senha = getpass(" Senha: ").strip()
             senhaII = getpass(" Repita: ").strip()
@@ -109,7 +113,6 @@ def cadastroUsuario():
         # se apertar N ou qualuqer coisa diferente de S ou s será encerrado o processo de loop
         if resp != "S":
             break
-    
     # após o while mostrará o menu do login
     menuLogin()
     

@@ -27,12 +27,10 @@ def menuInicial():
         if (lista.__contains__(resposta)):
             if resposta == '1':
                 cadastroLivro()
-                print("Teste realizado")
             elif resposta == '0':
-                os.close()
+                exit()
             elif resposta == '2':
                 cadastroLeitor()
-                print("Teste realizado")
             '''elif resposta == '3':
                 retiradaLivro()
             elif resposta == '4':
@@ -42,5 +40,5 @@ def menuInicial():
             elif resposta == '6':
                 relatorioUsuario()'''
         else:
-            print(f"Resposta informada [{resposta}] não está correto. Verifique!")
-            time.sleep(5)
+            print(f"Resposta informada [{resposta}] não está correto.\nVerifique!")
+            time.sleep(3)
