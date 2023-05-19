@@ -1,9 +1,10 @@
-from tqdm import tqdm
-from db import usuarioDB
-from db import livroDB
-from db import leitoresDB
 import time
 import os
+from tqdm import tqdm
+
+from objetosProjeto.db.leitoresDB import criacaoTBLeitores
+from objetosProjeto.db.livroDB import criacaoTBLivros
+from objetosProjeto.db.usuarioDB import criacaoTBUsuarios
 
 
 def finalizacaoApresentacao():
@@ -20,14 +21,13 @@ def inicialApresentacao():
     print("Verificando o banco de dados...")
     print("Carregando os dados pertinentes")
     print('''====================================================''')
-    usuarioDB.criacaoTB()
-    livroDB.criacaoTB()
-    leitoresDB.criacaoTB()
+    criacaoTBLeitores()
+    criacaoTBLivros()
+    criacaoTBUsuarios()
 
     for i in tqdm(range(5)):
         time.sleep(1)
     # criação do banco e das tabelas
-
 
 def finalizacaoApresentacao(nome):
     str =f'Seja Bem-Vindo(a) ao Sistema, {nome}!'

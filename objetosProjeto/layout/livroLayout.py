@@ -1,8 +1,10 @@
 import time
 import os
 from datetime import datetime, date
-from db.livroDB import insercaoLivro
-from entitys.livro import Livro
+from objetosProjeto.db.livroDB import insercaoLivro
+
+from objetosProjeto.entitys.livro import Livro
+
 
 
 # cadastro de livros
@@ -51,8 +53,6 @@ def cadastroLivro():
 
     
 # Retirada de Livro
-
-
 # Relatório de Livros
 
 

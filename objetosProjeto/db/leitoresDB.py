@@ -1,7 +1,9 @@
-from db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
+
+# criação da tabela Leitores
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
 
 
-def criacaoTB():
+def criacaoTBLeitores():
     sql =  """CREATE TABLE tb_leitores (
         id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         nome        TEXT NOT NULL,
@@ -16,6 +18,7 @@ def criacaoTB():
     if criacaoTabelasDB(sql) == True:
         print("Tabela leitores - ok")
 
+# Inserção de dados na tabela
 def insertLeitor(leitor):
     sql = f'''Insert into tb_leitores (nome, idade, cpf, email, fone, cidade, uf, criacao_em) 
     Values('{leitor.getNome()}', {leitor.getIdade()}, '{leitor.getCpf()}', '{leitor.getEmail()}',
@@ -25,6 +28,3 @@ def insertLeitor(leitor):
         return True
     else:
         return False
-    
-    
-    

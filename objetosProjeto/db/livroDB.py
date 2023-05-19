@@ -1,8 +1,7 @@
-from db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
-from entitys.livro import Livro
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
 
 # criação da tabela livros
-def criacaoTB():
+def criacaoTBLivros():
     sql = """CREATE TABLE tb_livros (
         id                  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         titulo              VARCHAR(255) NOT NULL,

@@ -1,6 +1,5 @@
 # Importações
 import sqlite3
-import time
 
 
 # Realizando a criação de um banco de dados local (abrindo e fechando)
@@ -24,16 +23,6 @@ def criacaoTabelasDB(sql):
     conn.close()
     return True
 
-# Criação geral para facilitar
-def criacaoTables():
-
-    # Criação inicial
-    criacaoBD()
-    if criacaoTabelasDB():
-        print("Conexão realizada! \nTabela já está disponível!")
-        return True
-    return False
-
 # inserção no banco de dados
 def insercaoDadosTabelas(sqlScript):
     try:
@@ -50,30 +39,29 @@ def insercaoDadosTabelas(sqlScript):
         return False
 
 # buscando os dados da table e retornando em forma de lista
-def recuperarDadosExpecificos(sql):
-    # coneção com o banco de dados
-    conn = sqlite3.connect('biblioteca.db')
-    cursor = conn.cursor()
+def recuperarDados(sql):
+        # coneção com o banco de dados
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
 
-    # executando sql
-    cursor.execute(sql)
-    
-    # criando uma lista para armazenar o resultado
-    
-    listaDados = list()
-    
-    # passando os dados para um objeto
-    for linha in cursor.fetchall():
-        listaDados.append(linha)
-    
-    # fechando a conexão
-    conn.close()
+        # executando sql
+        cursor.execute(sql)
+        
+        # criando uma lista para armazenar o resultado
+        
+        listaDados = list()
+        
+        # passando os dados para um objeto
+        for linha in cursor.fetchall():
+            listaDados.append(linha)
+        
+        # fechando a conexão
+        conn.close()
 
-    # retornando uma lista com um dado só, no caso o usuário com o login informado
-    if len(listaDados) == 0:
-        return False
-    return listaDados
-
+        # retornando uma lista com um dado só, no caso o usuário com o login informado
+        if len(listaDados) == 0:
+            return False
+        return listaDados
 # ================================================================================
 # ================================================================================
 

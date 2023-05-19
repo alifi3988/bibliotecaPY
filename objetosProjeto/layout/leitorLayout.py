@@ -1,17 +1,19 @@
 from datetime import date
 import time
-from db.leitoresDB import criacaoTB, insertLeitor
-from entitys.leitor import Leitor
+from objetosProjeto.db.leitoresDB import insertLeitor
+from objetosProjeto.entitys.leitor import Leitor
 
 def cadastroLeitor():
-    print("\nCadastro de Leitor")
-    nome = input("Nome do Leitor: ")
-    idade = int(input("Idade do Leitor: "))
-    cpf = input("CPF do Leitor: ")
-    email = input("Email do Leitor: ")
-    telefone = input("Telefone do Leitor: ")
-    cidade = input("Cidade do Leitor: ")
-    uf = input("UF do Leitor: ")
+    print("="*52)
+    print(" * * * C A D A S T R O   D E   L E I T O R * * * ".center(52))
+    print("="*52)
+    nome = input("Nome: ")
+    idade = int(input("Idade: "))
+    cpf = input("CPF: ")
+    email = input("Email: ")
+    telefone = input("Telefone com DDD: ")
+    cidade = input("Cidade: ")
+    uf = input("UF: ")
     data = date.today 
     # verificando
     leitor = Leitor( nome, idade, cpf, email, telefone, cidade, uf, data)

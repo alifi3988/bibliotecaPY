@@ -1,10 +1,9 @@
 from click import pause
-
-from db.conexaoDB import insercaoDadosTabelas, criacaoTabelasDB
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
 
 
 # Criação da table
-def criacaoTB():
+def criacaoTBUsuarios():
     sql = """CREATE TABLE tb_usuarios (
         id                  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         nome                TEXT NOT NULL,
@@ -19,7 +18,7 @@ def criacaoTB():
 # Inserção de dados
 def inserirUsuario(usuario):
     sql = f'''INSERT INTO tb_usuarios(nome, login, senha, dataCriacao, statusAssociativo) 
-     VALUES ('{usuario.getNome()}','{usuario.getLogin()}','{usuario.getSenha()}','{usuario.getDataCriacao()}','{usuario.getStatusAssociativo()}')'''
+    VALUES ('{usuario.getNome()}','{usuario.getLogin()}','{usuario.getSenha()}','{usuario.getDataCriacao()}','{usuario.getStatusAssociativo()}')'''
 
     if insercaoDadosTabelas(sql) == True:
         return True
@@ -27,5 +26,5 @@ def inserirUsuario(usuario):
         return False
 
 # Recuperação de dados expecíficos
-def recuperarDadosUsuarioExpecifico(login):
-    return f"SELECT * FROM tb_usuarios WHERE login = '{login}'"
+def recuperarDadosUsuarioExpecifico(str):
+    return f"SELECT * FROM tb_usuarios WHERE login = '{str}'"

@@ -1,10 +1,13 @@
-from layout.inicialLayout import inicialApresentacao
-from layout.loginLayout import login, menuLogin
-import sqlite3
+from objetosProjeto.layout.inicialLayout import inicialApresentacao
+from objetosProjeto.layout.loginLayout import menuLogin
 
-from leitorLayout import cadastroLeitor
+# função principal da aplicação
+def main():
+    inicialApresentacao()
+    menuLogin()
+    
+
+if __name__ == "__main__":
+    main()
 
 
-# chamando os metodos e funcoes
-inicialApresentacao()
-menuLogin()

@@ -1,14 +1,15 @@
 import collections
 from datetime import date
+from click import pause
 from tqdm import tqdm
 import time
 import os
 from getpass import getpass
-from entitys.usuario import Usuario
-from db.usuarioDB import *
-from db.conexaoDB import insercaoDadosTabelas, recuperarDadosExpecificos
-from layout.inicialLayout import finalizacaoApresentacao
-from layout.menuLayout import menuInicial
+from objetosProjeto.db.usuarioDB import inserirUsuario, recuperarDadosUsuarioExpecifico
+from objetosProjeto.db.conexaoDB import recuperarDados
+from objetosProjeto.entitys.usuario import Usuario
+from objetosProjeto.layout.inicialLayout import finalizacaoApresentacao
+from objetosProjeto.layout.menuLayout import menuInicial
 
 # mostrando o menu do login
 def menuLogin():
@@ -28,7 +29,8 @@ def menuLogin():
     elif resposta == "1":
         login()
     elif resposta == "2":
-        cadastroUsuario()
+        if cadastroUsuario() == True:
+            return True
     else:
         print("Erro na informação passada! Tente novamente!")
         time.sleep(5)
@@ -36,26 +38,34 @@ def menuLogin():
 
 # realizando o login
 def login():
-    os.system("cls")
-    print("="*52)
-    print("* * * L O G I N * * *".center(52))
-    print("="*52)
-    print("Informe os dados:")
-    loginUsuario = input("Login: ").strip()
-    senhaUsuario = getpass("Senha: ").strip()
-    print("="*52)
+    while(True):
+        os.system("cls")
+        print("="*52)
+        print("* * * L O G I N * * *".center(52))
+        print("="*52)
+        print("Informe os dados.\nInfome [0] em qualquer um dos campos para voltar.")
+        loginUsuario = input("Login: ").strip()
+        # voltando
+        if loginUsuario == "0": menuLogin()
+        
+        senhaUsuario = getpass("Senha: ").strip()
+        print("="*52)
+        
+        # voltando
+        if senhaUsuario == "0": menuLogin()
 
-    lista = recuperarDadosExpecificos(recuperarDadosUsuarioExpecifico(loginUsuario)) # copiando a lista
-    if lista != False:
-        if len(lista) != 0 and lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario:
-            print("Dados conferem com o informado!".center(52))
-            nomeUsuario = lista[0][1]
-            finalizacaoApresentacao(nomeUsuario)
-            menuInicial()
-             
-    print("Dados não conferem!".center(52))
-    pause()
-    login()
+        lista = recuperarDados(recuperarDadosUsuarioExpecifico(loginUsuario)) # copiando a lista
+        if lista != False:
+            if len(lista) != 0 and lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario:
+                print("Dados conferem com o informado!".center(52))
+                nomeUsuario = lista[0][1]
+                finalizacaoApresentacao(nomeUsuario)
+                time.sleep(3)
+                break
+                
+        print("Dados não conferem!".center(52))
+        time.sleep(3)
+    menuInicial()
 
 # realizando o cadastro de login com o BD
 def cadastroUsuario():
