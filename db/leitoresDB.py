@@ -1,4 +1,4 @@
-from db.conexaoDB import criacaoTabelasDB
+from db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
 
 
 def criacaoTB():
@@ -15,3 +15,16 @@ def criacaoTB():
     );  """
     if criacaoTabelasDB(sql) == True:
         print("Tabela leitores - ok")
+
+def insertLeitor(leitor):
+    sql = f'''Insert into tb_leitores (nome, idade, cpf, email, fone, cidade, uf, criacao_em) 
+    Values('{leitor.getNome()}', {leitor.getIdade()}, '{leitor.getCpf()}', '{leitor.getEmail()}',
+    '{leitor.getTelefone()}', '{leitor.getCidade()}', '{leitor.getUf()}', '{leitor.getData}')'''
+
+    if insercaoDadosTabelas(sql):
+        return True
+    else:
+        return False
+    
+    
+    

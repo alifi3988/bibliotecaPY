@@ -1,7 +1,7 @@
 import time
 import os
-
-from layout.livroLayout import cadastroLivro
+from livroLayout import *
+from leitorLayout import *
 
 
 # criação do menu
@@ -20,18 +20,19 @@ def menuInicial():
     print("[0] - Sair")
     print("="*52)
     resposta = input(">>").strip()
-    
+
     # realizando as verificações
-    lista = ['1','2','3','4','5','6','0']
-    if(lista.__contains__(resposta)):
+    lista = ['1', '2', '3', '4', '5', '6', '0']
+    if (lista.__contains__(resposta)):
         if resposta == '1':
             cadastroLivro()
             menuInicial()
         elif resposta == '0':
             os.close()
-        '''elif resposta == '2':
+        elif resposta == '2':
             cadastroLeitor()
-        elif resposta == '3':
+            print("Teste realizado")
+        '''elif resposta == '3':
             retiradaLivro()
         elif resposta == '4':
             devolucaoRenovacao()
@@ -43,4 +44,3 @@ def menuInicial():
         print(f"Resposta informada [{resposta}] não está correto. Verifique!")
         time.sleep(5)
         menuInicial()
-        
