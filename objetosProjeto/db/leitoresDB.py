@@ -1,6 +1,6 @@
 
 # criação da tabela Leitores
-from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
 
 
 def criacaoTBLeitores():
@@ -8,7 +8,7 @@ def criacaoTBLeitores():
         id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         nome        TEXT NOT NULL,
         idade       INTEGER,
-        cpf         VARCHAR(11) NOT NULL,
+        cpf         VARCHAR(11) NOT NULL UNIQUE,
         email       TEXT NOT NULL,
         fone        TEXT,
         cidade      TEXT,
@@ -18,11 +18,34 @@ def criacaoTBLeitores():
     if criacaoTabelasDB(sql) == True:
         print("Tabela leitores - ok")
 
+        
+def pesquisaCamposLeitor(campo, valor):
+    sql = f'''SELECT * FROM tb_leitores
+    WHERE {campo} = '{valor}' '''
+    
+    retornoDados = recuperarDados(sql)
+    
+    if retornoDados == False:
+        return False
+    return retornoDados # será retornado uma lista
+
+# retornará somente o ID
+def pesquisaCamposLeitorID(campo, valor):
+    sql = f'''SELECT id, nome, cpf FROM tb_leitores
+    WHERE {campo} = '{valor}' '''
+    
+    retornoDados = recuperarDados(sql)
+    
+    if retornoDados == False:
+        return False
+    return retornoDados # será retornado uma lista
+    
+
 # Inserção de dados na tabela
 def insertLeitor(leitor):
     sql = f'''Insert into tb_leitores (nome, idade, cpf, email, fone, cidade, uf, criado_em) 
     Values('{leitor.getNome()}', {leitor.getIdade()}, '{leitor.getCpf()}', '{leitor.getEmail()}',
-    '{leitor.getTelefone()}', '{leitor.getCidade()}', '{leitor.getUf()}', '{leitor.getData}')'''
+    '{leitor.getTelefone()}', '{leitor.getCidade()}', '{leitor.getUf()}', '{leitor.getData()}')'''
 
     if insercaoDadosTabelas(sql):
         return True

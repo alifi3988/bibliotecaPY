@@ -1,4 +1,4 @@
-from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
 
 # criação da tabela livros
 def criacaoTBLivros():
@@ -13,6 +13,19 @@ def criacaoTBLivros():
     ); """
     if criacaoTabelasDB(sql) == True:
         print("Tabela livros - ok")
+
+# retornará somente o ID | é mais verificar se o ID ou livro está cadastrado
+# para confirmar será retornado um
+def pesquisaCamposLivroID(idValidar):
+    sql = f'''SELECT id, titulo, autor FROM tb_livros
+    WHERE {id} = {idValidar} '''
+    
+    retornoDados = recuperarDados(sql)
+    
+    if retornoDados == False:
+        return False
+    return retornoDados # será retornado uma lista
+
 
 # inserção no banco de dados tb_livros
 def insercaoLivro(livro):

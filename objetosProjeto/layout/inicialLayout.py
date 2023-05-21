@@ -4,6 +4,7 @@ from tqdm import tqdm
 
 from objetosProjeto.db.leitoresDB import criacaoTBLeitores
 from objetosProjeto.db.livroDB import criacaoTBLivros
+from objetosProjeto.db.retiradaLivroDB import criacaoTBRetirada
 from objetosProjeto.db.usuarioDB import criacaoTBUsuarios
 
 
@@ -24,6 +25,7 @@ def inicialApresentacao():
     criacaoTBLeitores()
     criacaoTBLivros()
     criacaoTBUsuarios()
+    criacaoTBRetirada()
 
     for i in tqdm(range(5)):
         time.sleep(1)

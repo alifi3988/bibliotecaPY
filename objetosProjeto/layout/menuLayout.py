@@ -1,8 +1,8 @@
 import time
 import os
 from objetosProjeto.layout.leitorLayout import cadastroLeitor
-
 from objetosProjeto.layout.livroLayout import cadastroLivro
+from objetosProjeto.layout.retiradaLayout import inicioRetirada
 
 # criação do menu
 def menuInicial():
@@ -18,6 +18,7 @@ def menuInicial():
         print("[4] - Devolução/Renovação")
         print("[5] - Relatório de Livros")
         print("[6] - Relatório de Leitor")
+        print("[7] - Baixa Livro e Leitor")
         print("[0] - Sair")
         print("="*52)
         resposta = input(">>").strip()
@@ -31,9 +32,9 @@ def menuInicial():
                 exit()
             elif resposta == '2':
                 cadastroLeitor()
-            '''elif resposta == '3':
-                retiradaLivro()
-            elif resposta == '4':
+            elif resposta == '3':
+                inicioRetirada()
+            '''elif resposta == '4':
                 devolucaoRenovacao()
             elif resposta == '5':
                 relatorioLivros()
