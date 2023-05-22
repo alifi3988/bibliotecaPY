@@ -18,8 +18,8 @@ def criacaoTBRetirada():
 
 # inserção de dados
 def retiradaLivroSQL(retirada):
-    sql = f'''INSERT INTO tb_retiradaLivro(idLeitor, idLivro, dataRetirada, dataDevolucao, statusAssociativo)
-    VALUES({retirada.getIdLeitor()}, {retirada.getIdLivro()}, {retirada.getDataRetirada()}, {retirada.getDataEntrega()}, {retirada.getStatusRetirada()})'''
+    sql = f'''INSERT INTO tb_retirada(idLeitor, idLivro, dataRetirada, dataDevolucao, statusAssociativo)
+    VALUES({retirada.getIdLeitor()}, {retirada.getIdLivro()}, '{retirada.getDataRetirada()}', '{retirada.getDataEntrega()}', '{retirada.getStatusRetirada()}');'''
     # inserindo no banco de dados o registro
     if insercaoDadosTabelas(sql):
         return True

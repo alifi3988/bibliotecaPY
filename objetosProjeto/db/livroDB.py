@@ -17,8 +17,8 @@ def criacaoTBLivros():
 # retornará somente o ID | é mais verificar se o ID ou livro está cadastrado
 # para confirmar será retornado um
 def pesquisaCamposLivroID(idValidar):
-    sql = f'''SELECT id, titulo, autor FROM tb_livros
-    WHERE {id} = {idValidar} '''
+    sql = f'''SELECT id, titulo, autor, statusAssociativo FROM tb_livros
+    WHERE id = {idValidar}'''
     
     retornoDados = recuperarDados(sql)
     
