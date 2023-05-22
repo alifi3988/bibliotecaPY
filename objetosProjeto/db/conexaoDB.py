@@ -36,6 +36,7 @@ def insercaoDadosTabelas(sqlScript):
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
         cursor.execute(sqlScript)
+        
         # gravando no bd
         conn.commit()
         conn.close()

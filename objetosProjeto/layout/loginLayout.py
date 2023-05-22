@@ -20,7 +20,7 @@ def menuLogin():
     print("Selecione a opção:")
     print('''[1] - Login\n[2] - Cadastro de Login\n[0] - Sair''')
     print("="*52)
-    resposta = input(">>")
+    resposta = input(">> ")
     if resposta == "0":
         print("Finalizando o Sistema....")
         #time.sleep()
@@ -60,11 +60,11 @@ def login():
                 print("Dados conferem com o informado!".center(52))
                 nomeUsuario = lista[0][1]
                 finalizacaoApresentacao(nomeUsuario)
-                time.sleep(3)
+                time.sleep(2)
                 break
                 
         print("Dados não conferem!".center(52))
-        time.sleep(3)
+        time.sleep(2)
     menuInicial()
 
 # realizando o cadastro de login com o BD
@@ -108,7 +108,7 @@ def cadastroUsuario():
         else:
             print("Erro no registro. Verifique os dados!")
             print("Deseja tentar novamente? [S/N]")
-            resp = input(">>").strip().upper()
+            resp = input(">> ").strip().upper()
 
         # se apertar N ou qualuqer coisa diferente de S ou s será encerrado o processo de loop
         if resp != "S":
