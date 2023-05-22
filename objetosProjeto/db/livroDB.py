@@ -1,4 +1,4 @@
-from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, modificacaoTable, recuperarDados
 
 # criação da tabela livros
 def criacaoTBLivros():
@@ -32,6 +32,16 @@ def insercaoLivro(livro):
     sql = f'''INSERT INTO tb_livros(titulo, autor, editora, anoLancamento, registrado, statusAssociativo) 
     VALUES('{livro.getTitulo()}','{livro.getAutor()}','{livro.getEditor()}',{livro.getAnoLancamento()},'{livro.getRegistrado()}','{livro.getStatusAssociativo()}')'''
     if insercaoDadosTabelas(sql) == True:
+        return True
+    else:
+        return False
+    
+def modificacaoStatusLivro(idLivro):
+    sql = f'''UPDATE tb_livros
+    SET statusAssociativo = 'False'
+    WHERE id = {idLivro}'''
+    
+    if modificacaoTable(sql) == True:
         return True
     else:
         return False

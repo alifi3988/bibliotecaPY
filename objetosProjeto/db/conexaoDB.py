@@ -70,7 +70,28 @@ def recuperarDados(sql):
             print("Erro na recuperação de dados.")
             print(f"Erro: {er}")
             return False
+           
+def modificacaoTable(sql):
+        # coneção com o banco de dados
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        try:
+            # executando sql
+            resultado = cursor.execute(sql)
+
+            # salvando a alteração
+            conn.commit()
             
+            # fechando a conexão
+            conn.close()
+            
+            return True
+        
+        except sqlite3.Error as er:
+            print("Erro na modificação dos dados.")
+            print(f"Erro: {er}")
+            return False
+           
 # ================================================================================
 # ================================================================================
 
