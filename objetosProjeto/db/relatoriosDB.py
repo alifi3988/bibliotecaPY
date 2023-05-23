@@ -35,4 +35,15 @@ def recuperando_dados_nao_retirados():
 
 
 
+#recuperando todos os leitores
+def recupearando_todos_leitores():
+    consulta = '''SELECT *
+    FROM tb_leitores'''
+    resultado = recuperarDados(consulta)
+
+    # verificação do resultado obtido
+    if resultado != False:
+        return resultado
+    return False
+
 

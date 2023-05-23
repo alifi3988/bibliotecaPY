@@ -4,6 +4,7 @@ from objetosProjeto.layout.devolucaoRenovacaoLayout import inicialDevolucao
 from objetosProjeto.layout.leitorLayout import cadastroLeitor
 from objetosProjeto.layout.livroLayout import cadastroLivro
 from objetosProjeto.layout.retiradaLayout import inicioRetirada
+from objetosProjeto.relatórios.relatorioLeitor import relatorio_total
 from objetosProjeto.relatórios.relatorioLivros import gerar_relatorio_livros
 
 # criação do menu
@@ -41,8 +42,8 @@ def menuInicial():
                 inicialDevolucao()
             elif resposta == '5':
                 gerar_relatorio_livros()
-            '''elif resposta == '6':
-                #relatorioUsuario()'''
+            elif resposta == '6':
+                relatorio_total()
         else:
             print(f"Resposta informada [{resposta}] não está correto.\nVerifique!")
             time.sleep(3)

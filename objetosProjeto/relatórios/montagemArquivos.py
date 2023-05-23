@@ -42,5 +42,40 @@ def montagemArquivoExcel(dados, nomeArquivo):
         print("Erro na criação do arquivo!")
         time.sleep(3)
         return False
-    
-    
+    ####################
+def montagemArquivoExcel(leitor, nomeArquivo):
+    try:
+        # colocarei o nome do arquivo como um padrão de nome e dataAtual
+        nomeArquivo = f'{nomeArquivo}_{date.today()}.xlsx'
+        
+        # criação do arquivo
+        arquivoXLSX = xlsxwriter.Workbook(nomeArquivo)
+        arquivo = arquivoXLSX.add_worksheet()
+        
+        # criando um cabeçalho (linha, coluna e valor)
+        arquivo.write(0, 0, 'id')
+        arquivo.write(0, 1, 'nome')
+        arquivo.write(0, 2, 'idade')
+        arquivo.write(0, 3, 'cpf')
+        arquivo.write(0, 4, 'email')
+        arquivo.write(0, 5, 'fone')
+        arquivo.write(0, 6, 'cidade')
+        arquivo.write(0, 7, 'uf')
+        arquivo.write(0, 8, 'criado_em')
+        
+        # preenchendo o arquivo
+        linha = 1
+        for i in leitor:
+            coluna = 0
+            for j in i:
+                arquivo.write(linha, coluna, j)
+                coluna = coluna + 1
+            linha= linha + 1
+        
+        # fechando o arquivo
+        arquivoXLSX.close()
+        return nomeArquivo
+    except:
+        print("Erro na criação do arquivo!")
+        time.sleep(3)
+        return False
