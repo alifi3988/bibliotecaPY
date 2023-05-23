@@ -1,5 +1,6 @@
 
-from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
+from datetime import datetime, timedelta
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, modificacaoTable, recuperarDados
 
 # criação da tabela
 def criacaoTBRetirada():
@@ -15,7 +16,6 @@ def criacaoTBRetirada():
         )'''
     criacaoTabelasDB(sql)
 
-
 # inserção de dados
 def retiradaLivroSQL(retirada):   
     sql = f'''INSERT INTO tb_retirada(idLeitor, idLivro, dataRetirada, dataDevolucao, statusAssociativo)
@@ -27,3 +27,51 @@ def retiradaLivroSQL(retirada):
     else:
         return False
 
+# recuperação de dados
+def recuperacaoDadosRetirada(codigoLivro, idLeitor):
+    sql = f'''SELECT * 
+    FROM tb_retirada 
+    WHERE idLeitor = {idLeitor} AND idLivro = {codigoLivro} 
+    AND statusAssociativo = '{True}' '''
+    
+    dados = recuperarDados(sql)
+    
+    if dados == False:
+        return False
+    else:
+        return dados
+    
+# renovação
+def renovacaoLivroSQL(dataDevolucao, idLeitor, codigoLivro, dias):
+
+    # adicionando os dias
+    data = (datetime.strptime(dataDevolucao,  '%Y-%m-%d').date() + timedelta(dias))
+
+    sql =f'''UPDATE tb_retirada
+    SET dataDevolucao = '{data}' 
+    WHERE idLeitor = {idLeitor} AND idLivro = {codigoLivro} '''
+
+    if modificacaoTable(sql) == True:
+        return True
+    else:
+        return False
+    
+def devolucaoLivroSQL(idLeitor, codigoLivro):
+    
+    # atualização da tb_retirada
+    sql =f'''UPDATE tb_retirada
+    SET statusAssociativo = '{False}'
+    WHERE idLeitor = {idLeitor} AND idLivro = {codigoLivro} '''
+    
+    # atualizção da tb_livro
+    sqlLivro = f'''UPDATE tb_livros
+    SET statusAssociativo = '{True}'
+    WHERE id = {codigoLivro}'''
+    
+    modificacaoTable(sql)
+    
+    if modificacaoTable(sql) == True:
+        if modificacaoTable(sqlLivro) == True:
+            return True
+    return False
+    

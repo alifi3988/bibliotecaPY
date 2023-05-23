@@ -1,5 +1,6 @@
 import time
 import os
+from objetosProjeto.layout.devolucaoRenovacaoLayout import inicialDevolucao
 from objetosProjeto.layout.leitorLayout import cadastroLeitor
 from objetosProjeto.layout.livroLayout import cadastroLivro
 from objetosProjeto.layout.retiradaLayout import inicioRetirada
@@ -35,9 +36,9 @@ def menuInicial():
                 cadastroLeitor()
             elif resposta == '3':
                 inicioRetirada()
-            '''elif resposta == '4':
-                devolucaoRenovacao()
-            elif resposta == '5':
+            elif resposta == '4':
+                inicialDevolucao()
+            '''elif resposta == '5':
                 relatorioLivros()
             elif resposta == '6':
                 relatorioUsuario()'''
