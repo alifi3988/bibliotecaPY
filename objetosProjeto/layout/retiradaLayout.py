@@ -27,6 +27,7 @@ def inicioRetirada(cpfLeitor='vazio'):
         retornoLeitor = pesquisaCamposLeitorID('cpf', cpfLeitor)
         if retornoLeitor == False:
             print('Leitor não foi localizado. Verifique!')
+            time.sleep(2)
             inicioRetirada()
         else:
             # Verificação, se foi encontrado será mostrado as infromações básicas para validação
@@ -88,7 +89,6 @@ def inicioRetirada(cpfLeitor='vazio'):
             # verificação da inserção no banco de dados
             if retiradaLivroSQL(retirada) == True:
                 print("REGISTRADO!".center(52))
-                
                 # relizando a modificação no Livro, colocando como False, ou seja, está retirado
                 modificacaoStatusLivro(codigoLivro)
                 time.sleep(3)
@@ -102,3 +102,4 @@ def inicioRetirada(cpfLeitor='vazio'):
                 print("-"*52)
                 time.sleep(4) # mudar depois para esperar um "enter"
                 break
+        break

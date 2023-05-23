@@ -1,10 +1,10 @@
 
 from objetosProjeto.db.conexaoDB import recuperarDados
 
-
+# recuperando todos os dados
 def recupearando_todos_dados():
-    consulta = '''Select id, titulo, autor, editora, anoLancamento, registrado, statusAssociativo
-    From tb_livros'''
+    consulta = '''SELECT *
+    FROM tb_livros'''
     resultado = recuperarDados(consulta)
 
     # verificação do resultado obtido
@@ -12,25 +12,26 @@ def recupearando_todos_dados():
         return resultado
     return False
 
+# recuperando somente os retirados
 def recuperando_dados_retirados():
-    consulta = '''Select id, titulo, autor, editora, anoLancamento, registrado, 
-    (Where statusAssociativo == False) From tb_livros'''
-    resultado = recuperarDados(consulta)
-
-    #verificação do resultado obtido
-    if resultado != True:
-        return resultado
-    return False
-
-def recuperando_dados_nao_retirados():
-    consulta = '''Select id, titulo, autor, editora, anoLancamento, registrado, 
-    (Where statusAssociativo == True) From tb_livros'''
+    consulta = "SELECT * FROM tb_livros WHERE statusAssociativo == 'False'"
+    
     resultado = recuperarDados(consulta)
 
     #verificação do resultado obtido
     if resultado != False:
         return resultado
-    return True
+    return False
+
+# recuperando os dados não retirados
+def recuperando_dados_nao_retirados():
+    consulta = "Select * FROM tb_livros WHERE statusAssociativo == 'True'"
+    resultado = recuperarDados(consulta)
+
+    #verificação do resultado obtido
+    if resultado != False:
+        return resultado
+    return False
 
 
 
