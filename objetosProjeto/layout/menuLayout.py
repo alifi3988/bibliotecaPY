@@ -3,6 +3,7 @@ import os
 from objetosProjeto.layout.leitorLayout import cadastroLeitor
 from objetosProjeto.layout.livroLayout import cadastroLivro
 from objetosProjeto.layout.retiradaLayout import inicioRetirada
+from objetosProjeto.relatórios.relatorioLivros import gerar_relatorio
 
 # criação do menu
 def menuInicial():
@@ -35,12 +36,12 @@ def menuInicial():
                 cadastroLeitor()
             elif resposta == '3':
                 inicioRetirada()
-            '''elif resposta == '4':
-                devolucaoRenovacao()
+            #elif resposta == '4':
+                #devolucaoRenovacao()
             elif resposta == '5':
-                relatorioLivros()
-            elif resposta == '6':
-                relatorioUsuario()'''
+                gerar_relatorio()
+            #elif resposta == '6':
+                #relatorioUsuario()'''
         else:
             print(f"Resposta informada [{resposta}] não está correto.\nVerifique!")
             time.sleep(3)
