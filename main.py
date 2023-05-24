@@ -1,3 +1,4 @@
+from objetosProjeto.db.conexaoDB import recuperarDados
 from objetosProjeto.layout.inicialLayout import inicialApresentacao
 from objetosProjeto.layout.loginLayout import menuLogin
 

@@ -1,7 +1,8 @@
 
+# recuperando todos os dados
 from objetosProjeto.db.conexaoDB import recuperarDados
 
-# recuperando todos os dados
+
 def recupearando_todos_dados():
     consulta = '''SELECT *
     FROM tb_livros'''
@@ -45,5 +46,17 @@ def recupearando_todos_leitores():
     if resultado != False:
         return resultado
     return False
+
+def recuperando_relatorio_retirada():
+    consulta = '''SELECT re.idLeitor, le.nome, re.idLivro, li.titulo, re.dataRetirada, re.dataDevolucao, re.statusAssociativo 
+FROM tb_retirada re 
+INNER JOIN tb_leitores le ON (re.idLeitor == le.id)
+INNER JOIN tb_livros li ON (re.idLivro == li.id)'''
+    resultado = recuperarDados(consulta)
+    if resultado != False:
+        return resultado
+    return False
+    
+        
 
 

@@ -6,6 +6,7 @@ from objetosProjeto.layout.livroLayout import cadastroLivro
 from objetosProjeto.layout.retiradaLayout import inicioRetirada
 from objetosProjeto.relatórios.relatorioLeitor import relatorio_total
 from objetosProjeto.relatórios.relatorioLivros import gerar_relatorio_livros
+from objetosProjeto.relatórios.relatorioRetirada import gerar_relatorio_retirada
 
 # criação do menu
 def menuInicial():
@@ -28,7 +29,7 @@ def menuInicial():
         resposta = input(">>").strip()
 
         # realizando as verificações
-        lista = ['1', '2', '3', '4', '5', '6', '0']
+        lista = ['1', '2', '3', '4', '5', '6', '7', '0']
         if (lista.__contains__(resposta)):
             if resposta == '1':
                 cadastroLivro()
@@ -44,6 +45,8 @@ def menuInicial():
                 gerar_relatorio_livros()
             elif resposta == '6':
                 relatorio_total()
+            elif resposta == '7':
+                gerar_relatorio_retirada()
         else:
             print(f"Resposta informada [{resposta}] não está correto.\nVerifique!")
             time.sleep(3)

@@ -42,7 +42,9 @@ def montagemArquivoExcel(dados, nomeArquivo):
         print("Erro na criação do arquivo!")
         time.sleep(3)
         return False
+    
     ####################
+
 def montagemArquivoExcel(leitor, nomeArquivo):
     try:
         # colocarei o nome do arquivo como um padrão de nome e dataAtual
@@ -66,6 +68,43 @@ def montagemArquivoExcel(leitor, nomeArquivo):
         # preenchendo o arquivo
         linha = 1
         for i in leitor:
+            coluna = 0
+            for j in i:
+                arquivo.write(linha, coluna, j)
+                coluna = coluna + 1
+            linha= linha + 1
+        
+        # fechando o arquivo
+        arquivoXLSX.close()
+        return nomeArquivo
+    except:
+        print("Erro na criação do arquivo!")
+        time.sleep(3)
+        return False
+    
+##########
+
+def montagemArquivoExcelRetirada(retirada, nomeArquivo):
+    try:
+        # colocarei o nome do arquivo como um padrão de nome e dataAtual
+        nomeArquivo = f'{nomeArquivo}_{date.today()}.xlsx'
+        
+        # criação do arquivo
+        arquivoXLSX = xlsxwriter.Workbook(nomeArquivo)
+        arquivo = arquivoXLSX.add_worksheet()
+        
+        # criando um cabeçalho (linha, coluna e valor)
+        arquivo.write(0, 0, 'idLeitor')
+        arquivo.write(0, 1, 'nome')
+        arquivo.write(0, 2, 'idLivro')
+        arquivo.write(0, 3, 'titulo')
+        arquivo.write(0, 4, 'dataRetirada')
+        arquivo.write(0, 5, 'dataDevolucao')
+        arquivo.write(0, 6, 'statusAssociativo')
+        
+        # preenchendo o arquivo
+        linha = 1
+        for i in retirada:
             coluna = 0
             for j in i:
                 arquivo.write(linha, coluna, j)
