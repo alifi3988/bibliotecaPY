@@ -1,5 +1,5 @@
 from click import pause
-from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
 
 
 # Criação da table
@@ -28,3 +28,14 @@ def inserirUsuario(usuario):
 # Recuperação de dados expecíficos
 def recuperarDadosUsuarioExpecifico(str):
     return f"SELECT * FROM tb_usuarios WHERE login = '{str}'"
+
+# recuperando todos os dados
+def recuperarTodosDados():
+    sql = 'SELECT * FROM tb_usuarios;'
+    
+    dados = recuperarDados(sql)
+    
+    if dados != False:
+        return dados
+    else:
+        return False

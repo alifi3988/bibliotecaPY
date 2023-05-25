@@ -8,7 +8,9 @@ from getpass import getpass
 from objetosProjeto.db.usuarioDB import inserirUsuario, recuperarDadosUsuarioExpecifico
 from objetosProjeto.db.conexaoDB import recuperarDados
 from objetosProjeto.entitys.usuario import Usuario
+from objetosProjeto.layout import sobre
 from objetosProjeto.layout.inicialLayout import finalizacaoApresentacao
+from objetosProjeto.layout.menuAdministrativo import menuAdmSistema
 from objetosProjeto.layout.menuLayout import menuInicial
 
 # mostrando o menu do login
@@ -18,9 +20,10 @@ def menuLogin():
     print("* * * M E N U   L O G I N * * *".center(52))
     print("="*52)
     print("Selecione a opção:")
-    print('''[1] - Login\n[2] - Cadastro de Login\n[0] - Sair''')
+    print('''[1] - Login\n[2] - Cadastro de Login\n[3] - Sobre \n[0] - Sair''')
     print("="*52)
     resposta = input(">> ")
+    
     if resposta == "0":
         print("Finalizando o Sistema....")
         #time.sleep()
@@ -28,12 +31,17 @@ def menuLogin():
         
     elif resposta == "1":
         login()
+        
     elif resposta == "2":
         if cadastroUsuario() == True:
             return True
+        
+    elif resposta =='3':
+        sobre()
+        
     else:
         print("Erro na informação passada! Tente novamente!")
-        time.sleep(5)
+        time.sleep(3)
         menuLogin()
 
 # realizando o login
@@ -55,9 +63,15 @@ def login():
         if senhaUsuario == "0": menuLogin()
 
         lista = recuperarDados(recuperarDadosUsuarioExpecifico(loginUsuario)) # copiando a lista
+        
         if lista != False:
             if len(lista) != 0 and lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario:
                 print("Dados conferem com o informado!".center(52))
+                
+                if loginUsuario == 'admin@':
+                    print("USUÁRIO ADMINISTRADOR DO SISTEMA!".center(52))
+                    time.sleep(3)
+                    menuAdmSistema()
                 nomeUsuario = lista[0][1]
                 finalizacaoApresentacao(nomeUsuario)
                 time.sleep(2)

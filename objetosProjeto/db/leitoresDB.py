@@ -2,7 +2,7 @@
 # criação da tabela Leitores
 from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
 
-
+# criação do banco de dados
 def criacaoTBLeitores():
     sql =  """CREATE TABLE tb_leitores (
         id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +18,7 @@ def criacaoTBLeitores():
     if criacaoTabelasDB(sql) == True:
         print("Tabela leitores - ok")
 
-        
+# pesquisr no banco por um campo expecífico
 def pesquisaCamposLeitor(campo, valor):
     sql = f'''SELECT * FROM tb_leitores
     WHERE {campo} = '{valor}' '''
@@ -40,7 +40,6 @@ def pesquisaCamposLeitorID(campo, valor):
         return False
     return retornoDados # será retornado uma lista
     
-
 # Inserção de dados na tabela
 def insertLeitor(leitor):
     sql = f'''Insert into tb_leitores (nome, idade, cpf, email, fone, cidade, uf, criado_em) 
@@ -49,5 +48,14 @@ def insertLeitor(leitor):
 
     if insercaoDadosTabelas(sql):
         return True
+    else:
+        return False
+
+def recuperarTodosLeitores():
+    sql = 'SELECT * FROM tb_leitores'
+    dados = recuperarDados(sql)
+    
+    if dados != False:
+        return dados
     else:
         return False

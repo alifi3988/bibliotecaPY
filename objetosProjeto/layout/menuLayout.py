@@ -4,6 +4,7 @@ from objetosProjeto.layout.devolucaoRenovacaoLayout import inicialDevolucao
 from objetosProjeto.layout.leitorLayout import cadastroLeitor
 from objetosProjeto.layout.livroLayout import cadastroLivro
 from objetosProjeto.layout.retiradaLayout import inicioRetirada
+from objetosProjeto.layout.sobre import sobreAplicacao
 from objetosProjeto.relatórios.relatorioLeitor import relatorio_total
 from objetosProjeto.relatórios.relatorioLivros import gerar_relatorio_livros
 from objetosProjeto.relatórios.relatorioRetirada import gerar_relatorio_retirada
@@ -23,18 +24,16 @@ def menuInicial():
         print("[5] - Relatório de Livros")
         print("[6] - Relatório de Leitor")
         print("[7] - Relatório de Retirada")
-        print("[8] - Realizar baixa [Livro || Leitor]")
+        print("[8] - Sobre a Aplicação")
         print("[0] - Sair")
         print("="*52)
         resposta = input(">>").strip()
 
         # realizando as verificações
-        lista = ['1', '2', '3', '4', '5', '6', '7', '0']
+        lista = ['1', '2', '3', '4', '5', '6', '7', '8', '0']
         if (lista.__contains__(resposta)):
             if resposta == '1':
                 cadastroLivro()
-            elif resposta == '0':
-                exit()
             elif resposta == '2':
                 cadastroLeitor()
             elif resposta == '3':
@@ -47,6 +46,10 @@ def menuInicial():
                 relatorio_total()
             elif resposta == '7':
                 gerar_relatorio_retirada()
+            elif resposta == '8':
+                sobreAplicacao()
+            elif resposta == '0':
+                exit()
         else:
             print(f"Resposta informada [{resposta}] não está correto.\nVerifique!")
             time.sleep(3)

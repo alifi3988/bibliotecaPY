@@ -1,0 +1,261 @@
+{
+    "Historico_Usuarios": [
+        {
+            "id": 1,
+            "nome": "alifi",
+            "login": "alifi",
+            "senha": "123",
+            "dataCriacao": "2023-05-17",
+            "statusAssociativo": "false"
+        },
+        {
+            "id": 2,
+            "nome": "alifi",
+            "login": "alifi.santos",
+            "senha": "123",
+            "dataCriacao": "2023-05-17",
+            "statusAssociativo": 0
+        },
+        {
+            "id": 3,
+            "nome": "alifi",
+            "login": "alifi.estevam",
+            "senha": "123",
+            "dataCriacao": "2023-05-17",
+            "statusAssociativo": "false"
+        },
+        {
+            "id": 4,
+            "nome": "alifi",
+            "login": "alifi.augusto",
+            "senha": "123",
+            "dataCriacao": "2023-05-17",
+            "statusAssociativo": 0
+        },
+        {
+            "id": 5,
+            "nome": "alifi",
+            "login": "alifi.teste",
+            "senha": "123",
+            "dataCriacao": "2023-05-17",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 6,
+            "nome": "Alifi Augusto",
+            "login": "leonardo.tirado",
+            "senha": "123456",
+            "dataCriacao": "2023-05-17",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 7,
+            "nome": "Leonardo",
+            "login": "leonardo",
+            "senha": "123",
+            "dataCriacao": "2023-05-18",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 8,
+            "nome": "Rafael",
+            "login": "rafa87",
+            "senha": "123456",
+            "dataCriacao": "2023-05-18",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 9,
+            "nome": "admin",
+            "login": "admin",
+            "senha": "admin",
+            "dataCriacao": "2023-05-19",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 10,
+            "nome": "ADMINISTRADOR",
+            "login": "admin@",
+            "senha": "adminadmin",
+            "dataCriacao": "2023-05-25",
+            "statusAssociativo": "True"
+        }
+    ],
+    "Historico_Livro": [
+        {
+            "id": 1,
+            "titulo": "t",
+            "autor": "t",
+            "editora": "t",
+            "anoLancamento": 2000,
+            "registrado": "2023-05-18",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 2,
+            "titulo": "teste",
+            "autor": "teste",
+            "editora": "teste",
+            "anoLancamento": 2001,
+            "registrado": "2023-05-18",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 3,
+            "titulo": "A volta dos que n\u00e3o foram",
+            "autor": "Desconhecido",
+            "editora": "Desconhecido",
+            "anoLancamento": 1999,
+            "registrado": "2023-05-18",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 4,
+            "titulo": "A Culpa \u00e9 das Estrelas",
+            "autor": "Desconhecido ",
+            "editora": "nenhuma",
+            "anoLancamento": 2019,
+            "registrado": "2023-05-18",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 5,
+            "titulo": "teste",
+            "autor": "teste",
+            "editora": "teste",
+            "anoLancamento": 2000,
+            "registrado": "2023-05-18",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 6,
+            "titulo": "Java",
+            "autor": "Geraldo",
+            "editora": "Fatec",
+            "anoLancamento": 2020,
+            "registrado": "2023-05-18",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 7,
+            "titulo": "A arte da guerra",
+            "autor": "Sun Tzu",
+            "editora": "Obra complet",
+            "anoLancamento": 2019,
+            "registrado": "2023-05-19",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 8,
+            "titulo": "Teste do livro Novo",
+            "autor": "Autor Novo",
+            "editora": "Editora Nova",
+            "anoLancamento": 2023,
+            "registrado": "2023-05-19",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 9,
+            "titulo": "Teste ano",
+            "autor": "Autor teste",
+            "editora": "teste",
+            "anoLancamento": 2023,
+            "registrado": "2023-05-19",
+            "statusAssociativo": "True"
+        },
+        {
+            "id": 10,
+            "titulo": "Java",
+            "autor": "Fabricio",
+            "editora": "Fatec",
+            "anoLancamento": 2020,
+            "registrado": "2023-05-22",
+            "statusAssociativo": "False"
+        },
+        {
+            "id": 11,
+            "titulo": "A volta dos que n\u00e3o foram parte II",
+            "autor": "Desconhecido",
+            "editora": "Desconhecido",
+            "anoLancamento": 2015,
+            "registrado": "2023-05-23",
+            "statusAssociativo": "False"
+        }
+    ],
+    "Historico_Leitores": [
+        {
+            "id": 1,
+            "nome": "Teste",
+            "idade": 23,
+            "cpf": "47013722856",
+            "email": "alifi3988@gmail.com",
+            "fone": "19989763871",
+            "cidade": "Ribeir\u00e3o Preto",
+            "uf": "SP",
+            "criado_em": "<bound method Leitor.getData of <objetosProjeto.entitys.leitor.Leitor object at 0x000001EED40B5360>>"
+        },
+        {
+            "id": 2,
+            "nome": "Alifi ",
+            "idade": 23,
+            "cpf": "47013722855",
+            "email": "alifi3988@gmail.com",
+            "fone": "19989763871",
+            "cidade": "Ribeir\u00e3o Preto",
+            "uf": "SP",
+            "criado_em": "<bound method Leitor.getData of <objetosProjeto.entitys.leitor.Leitor object at 0x000001E606145360>>"
+        },
+        {
+            "id": 3,
+            "nome": "Carlos Eduardo",
+            "idade": 25,
+            "cpf": "123.456.789-00",
+            "email": "carlos@teste.com.br",
+            "fone": "16 98888-7777",
+            "cidade": "Cravinhos",
+            "uf": "sp",
+            "criado_em": "2023-05-22"
+        },
+        {
+            "id": 4,
+            "nome": "Leitor Leitor",
+            "idade": 23,
+            "cpf": "47013722857",
+            "email": "alifi3988@gmail.com",
+            "fone": "19989763871",
+            "cidade": "Riebir\u00e3o Preto",
+            "uf": "SP",
+            "criado_em": "2023-05-23"
+        }
+    ],
+    "Historico_Retirada": [
+        {
+            "idLeitor": 2,
+            "idLivro": 7,
+            "dataRetirada": "2023-05-22",
+            "dataDevolucao": "2023-06-06",
+            "statusAssociativo": "True"
+        },
+        {
+            "idLeitor": 2,
+            "idLivro": 3,
+            "dataRetirada": "2023-05-22",
+            "dataDevolucao": "2023-06-06",
+            "statusAssociativo": "True"
+        },
+        {
+            "idLeitor": 3,
+            "idLivro": 10,
+            "dataRetirada": "2023-05-22",
+            "dataDevolucao": "2023-05-24",
+            "statusAssociativo": "True"
+        },
+        {
+            "idLeitor": 4,
+            "idLivro": 11,
+            "dataRetirada": "2023-05-23",
+            "dataDevolucao": "2023-06-07",
+            "statusAssociativo": "True"
+        }
+    ]
+}

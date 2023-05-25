@@ -75,3 +75,11 @@ def devolucaoLivroSQL(idLeitor, codigoLivro):
             return True
     return False
     
+def recuperarTodasRetiradas():
+    sql = "SELECT * FROM tb_retirada"
+    dados = recuperarDados(sql)
+    
+    if dados != False:
+        return dados
+    else:
+        return False

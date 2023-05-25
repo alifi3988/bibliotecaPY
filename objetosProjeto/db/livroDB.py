@@ -26,7 +26,6 @@ def pesquisaCamposLivroID(idValidar):
         return False
     return retornoDados # será retornado uma lista
 
-
 # inserção no banco de dados tb_livros
 def insercaoLivro(livro):
     sql = f'''INSERT INTO tb_livros(titulo, autor, editora, anoLancamento, registrado, statusAssociativo) 
@@ -35,7 +34,8 @@ def insercaoLivro(livro):
         return True
     else:
         return False
-    
+
+# modificar o StatusLivro
 def modificacaoStatusLivro(idLivro):
     sql = f'''UPDATE tb_livros
     SET statusAssociativo = 'False'
@@ -45,3 +45,15 @@ def modificacaoStatusLivro(idLivro):
         return True
     else:
         return False
+
+# pesquisartodos os livros
+def recuperarTodosLivros():
+    sql = 'SELECT * FROM tb_livros'
+    dados = recuperarDados(sql)
+    
+    if dados != False:
+        return dados
+    else:
+        return False
+    
+    

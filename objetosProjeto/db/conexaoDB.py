@@ -1,5 +1,7 @@
 # Importações
+import io
 import sqlite3
+import time
 
 
 # Realizando a criação de um banco de dados local (abrindo e fechando)
@@ -91,7 +93,50 @@ def modificacaoTable(sql):
             print("Erro na modificação dos dados.")
             print(f"Erro: {er}")
             return False
-           
+     
+# BKP bd
+def BKPBancoDeDados():
+    
+    try:
+        conn = sqlite3.connect('biblioteca.db')
+        
+        # Open() function 
+        with io.open('backupdatabase.sql', 'w') as p: 
+                
+            # iterdump() function
+            for line in conn.iterdump(): 
+                p.write('%s\n' % line)
+            
+        print(' Backup realizado com sucesso!'.center(52))    
+        conn.close() 
+        return True
+    
+    except sqlite3.Error as er:
+        print("Erro para realizar o BKP do Banco de dados")
+        print(f"Erro: {er}")
+        time.sleep(3)
+        return False
+
+
+def RecuperarBancoDeDados(nome):
+    try:
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        
+        nomeArquivo = f"{nome}"
+
+        f = io.open(nomeArquivo, 'r')
+        sql = f.read()
+        cursor.executescript(sql)
+
+        print('Banco de dados recuperado com sucesso.')
+        conn.close()
+        return True
+    except sqlite3.Error as er:
+        print("Erro na recuperação")
+        print(f"Erro: {er}")
+        time.sleep(3)
+        return False
 # ================================================================================
 # ================================================================================
 
