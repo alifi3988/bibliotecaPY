@@ -72,7 +72,8 @@ def recuperarDados(sql):
             print("Erro na recuperação de dados.")
             print(f"Erro: {er}")
             return False
-           
+   
+# modificar table        
 def modificacaoTable(sql):
         # coneção com o banco de dados
         conn = sqlite3.connect('biblioteca.db')
@@ -118,7 +119,7 @@ def BKPBancoDeDados():
         time.sleep(3)
         return False
 
-
+# recuperar BD
 def RecuperarBancoDeDados(nome):
     try:
         conn = sqlite3.connect('biblioteca.db')

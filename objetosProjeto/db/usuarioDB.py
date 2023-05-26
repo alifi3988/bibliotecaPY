@@ -1,5 +1,5 @@
 from click import pause
-from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
+from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, modificacaoTable, recuperarDados
 
 
 # Criação da table
@@ -10,13 +10,14 @@ def criacaoTBUsuarios():
         login               VARCHAR(20) NOT NULL UNIQUE,
         senha               TEXT NOT NULL,
         dataCriacao         DATE NOT NULL,
-        statusAssociativo   INTEGER NOT NULL
+        statusAssociativo   BOOL NOT NULL
     );"""
     if criacaoTabelasDB(sql) == True:
         print("Tabela usuarios - ok")
 
 # Inserção de dados
 def inserirUsuario(usuario):
+
     sql = f'''INSERT INTO tb_usuarios(nome, login, senha, dataCriacao, statusAssociativo) 
     VALUES ('{usuario.getNome()}','{usuario.getLogin()}','{usuario.getSenha()}','{usuario.getDataCriacao()}','{usuario.getStatusAssociativo()}')'''
 
@@ -39,3 +40,18 @@ def recuperarTodosDados():
         return dados
     else:
         return False
+
+def recuperarSomenteIDUsuario(usuario):
+    sql = f"SELECT id FROM tb_usuarios WHERE login = '{usuario}'"
+    
+    dados = recuperarDados(sql)
+    
+    if dados != False:
+        return dados
+    else:
+        return False
+
+def modificarStatus(usuario):
+    sql = f"UPDATE tb_usuarios SET statusAssociativo = True WHERE login = {usuario}"
+    return modificacaoTable(sql)
+    

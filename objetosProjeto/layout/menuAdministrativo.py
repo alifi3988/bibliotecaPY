@@ -5,7 +5,7 @@ from objetosProjeto.db.conexaoDB import BKPBancoDeDados, RecuperarBancoDeDados
 from objetosProjeto.db.leitoresDB import recuperarTodosLeitores
 from objetosProjeto.db.livroDB import recuperarTodosLivros
 from objetosProjeto.db.retiradaLivroDB import recuperarTodasRetiradas
-from objetosProjeto.db.usuarioDB import recuperarTodosDados
+from objetosProjeto.db.usuarioDB import modificarStatus, recuperarSomenteIDUsuario, recuperarTodosDados
 import json
 import zipfile
 import urllib.request
@@ -24,7 +24,8 @@ def menuAdmSistema():
         print("="*52)
         print("[1] - Importar todos os dados do BD")
         print("[2] - Exportar Banco de dados")
-        print("[3] - Importar Banco de dados")
+        print("[3] - Importar WEB")
+        print("[4] - Liberação de usuario")
         print("[0] - Sair")
         print("-"*52)
         resp = input(">> ").strip()
@@ -46,6 +47,9 @@ def menuAdmSistema():
             
         elif resp == '3':
             importarBD()
+            
+        elif resp == "4":
+            liberacaoUsuario()
 
         elif resp == '0':
             print("Saindo do modo administrador...")
@@ -149,7 +153,6 @@ def importarJSON():
         print("Houve erro! Verifique! [menuAdministrativo/importarJSON()]")
         time.sleep(3)
     
-
 # expostação banco de dados
 def exportarBanco():
     print("="*52)  
@@ -175,7 +178,7 @@ def importarBD():
     else:
         return False
     
-
+# criação do diretório para exportação do JSON
 def criarDiretorioProjeto():
     try:
         os.makedirs
@@ -195,8 +198,58 @@ def criarDiretorioProjeto():
         print("Erro | menuAdministrativo.py/criarDiretorioProjeto()")
         time.sleep(3)
         return False
-    
-    
+  
+  
+def liberacaoUsuario():
+    while True:
+        os.system("cls")
+        print("="*52)  
+        print(" * * * L I B E R A Ç Ã O   D E   U S U Á R I O * * *")
+        print("="*52) 
+        print("Informe o usuário que será realizado a liberação.")
+        print("Ou infome [0] para voltar")
+        usuario = input(">> ")
+        
+        if usuario =='0':
+            break
+        else:
+            print("Pesquisando...")
+            time.sleep(2)
+            retorno = recuperarSomenteIDUsuario(usuario)
+            
+            if retorno != False:
+                print("Usuario Localizado! Confirme os dados...")
+                print("-"*52)
+                print("Nome: {}")
+                print("Usuário: {}")
+                print("-"*52)
+                while True:
+                    resp = input("Correto? [S/N]").strip().upper()
+                    if resp != "S" or resp != "N":
+                        print("Não reconheci o que foi informado! Informe novamente...")
+                    elif resp =='S':
+                        break
+                    elif resp =='N':
+                        liberacaoUsuario()
+                retorno = modificarStatus(usuario)
+                if retorno == True:
+                    print("Usuário foi ativado!")
+                    time.sleep(2)
+                    break
+                else:
+                    print("Falha para ativar o usuário!")
+                    time.sleep(2)
+            else:
+                print("Usuário não foi localizado!")
+                time.sleep(2)
+        
+  
+  
+
+
+  
+
+# importação de dados WEB
 def requestAplicacao():
     
     try:

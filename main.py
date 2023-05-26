@@ -6,8 +6,7 @@ from objetosProjeto.layout.sobre import sobreAplicacao
 
 # função principal da aplicação
 def main():
-    #inicialApresentacao()
-    #menuLogin()
-    requestAplicacao()
+    inicialApresentacao()
+    menuLogin()
 if __name__ == "__main__":
     main()
