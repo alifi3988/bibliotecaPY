@@ -16,9 +16,12 @@ Aplicação desenvolvido por:
 alifi.santos@fatec.sp.gov.br
 
 RAFAEL AUGUSTO PEREIRA RODRIGUES
+2840482023032
+rafael.rodrigues81@fatec.sp.gov.br
           
-Para a matéria de Tópicos Especiais em Informática,
-com o PROF. ME. FABRÍCIO GUSTAVO HENRIQUE.
+O projeto foi desenvolvido para a matéria de
+Tópicos Especiais em Informática, com o 
+PROF. ME. FABRÍCIO GUSTAVO HENRIQUE.
           
 O Projeto é um Sistema básico para Biblioteca, onde 
 o usuário irá realizar operações fáceis (CADASTRO DE 

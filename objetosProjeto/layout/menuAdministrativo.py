@@ -9,6 +9,7 @@ from objetosProjeto.db.usuarioDB import recuperarTodosDados
 import json
 import zipfile
 import urllib.request
+from urllib.request import urlopen
 
 # criação de um arquivo geral
 def menuAdmSistema():
@@ -50,10 +51,6 @@ def menuAdmSistema():
             print("Saindo do modo administrador...")
             time.sleep(3)
             break
-
-
-
-
 
 # importação de usuários
 def importarJSON():
@@ -202,11 +199,16 @@ def criarDiretorioProjeto():
     
 def requestAplicacao():
     
-    URL = "localhost:8080/dados"
-    
-    response = urllib.request.urlopen(URL)
-    
-    #headers = response.info()
-    
-    #print('DATA    : %s' %headers['date'])
-    print(response)
+    try:
+        pagina = 'https://github.com/alifi3988/bibliotecaPY/blob/main/objetosProjeto/dadosProjeto.htm'
+        #headers = response.info()
+        
+        #print('DATA    : %s' %headers['date'])
+        with urlopen(pagina) as response:
+            body = response.read()
+        
+        todos_items = json.loads(body)
+        todos_items
+            
+    except:
+        print("Erro!")
