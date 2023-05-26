@@ -101,13 +101,14 @@ def BKPBancoDeDados():
         conn = sqlite3.connect('biblioteca.db')
         
         # Open() function 
-        with io.open('backupdatabase.sql', 'w') as p: 
+        with open("backupdatabase.sql", 'w') as p: 
                 
             # iterdump() function
             for line in conn.iterdump(): 
                 p.write('%s\n' % line)
             
-        print(' Backup realizado com sucesso!'.center(52))    
+        print(' Backup realizado com sucesso!'.center(52))   
+        time.sleep(3) 
         conn.close() 
         return True
     
@@ -133,8 +134,8 @@ def RecuperarBancoDeDados(nome):
         conn.close()
         return True
     except sqlite3.Error as er:
-        print("Erro na recuperação")
-        print(f"Erro: {er}")
+        print("Erro na recuperação. Ou o Banco e as tabelas já existem!")
+        print(f"Mensagem: {er}")
         time.sleep(3)
         return False
 # ================================================================================

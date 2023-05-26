@@ -1,7 +1,5 @@
 import io
 import os
-from sqlite3 import connect
-import sqlite3
 import time
 from objetosProjeto.db.conexaoDB import BKPBancoDeDados, RecuperarBancoDeDados
 from objetosProjeto.db.leitoresDB import recuperarTodosLeitores
@@ -10,11 +8,16 @@ from objetosProjeto.db.retiradaLivroDB import recuperarTodasRetiradas
 from objetosProjeto.db.usuarioDB import recuperarTodosDados
 import json
 import zipfile
+import urllib.request
 
 # criação de um arquivo geral
 def menuAdmSistema():
-    os.system("cls")
     while True:
+        os.system("cls")
+        
+        # criação dos diretórios principais
+        criarDiretorioProjeto()
+        
         print("="*52)
         print("* * * A D M I N I S T R A D O R * * * ".center(52))
         print("="*52)
@@ -27,7 +30,8 @@ def menuAdmSistema():
         
         # verificação
         if resp == '1':
-            if importarJSON() == True:
+            arquivoJSON = importarJSON()
+            if arquivoJSON != False:
                 print("Realizado com sucesso...".center(52))
                 time.sleep(3)
 
@@ -126,20 +130,27 @@ def importarJSON():
                 }
             )
     else:
-        print("ERRO PARA RECUPERAÇÃO DE DADOS PARA EXPORTAÇÃO!".center(52))
+        print("ERRO PARA RECUPERAÇÃO DE DADOS!".center(52))
         time.sleep(3)
     # finalização
     
-    
-    # realizando a conversão para Json e compactando
-    arquivoZip = zipfile.ZipFile('jsonDadosBiblioteca.zip', 'w', zipfile.ZIP_DEFLATED)
-    
-    with open("bancoBiblioteca.json", "w") as arquivo:     
-        arquivoZip.write(json.dump(bancoBiblioteca, arquivo, indent=4))
+    try:
+        # realizando a conversão para Json e compactando
+        #arquivoZip = zipfile.ZipFile('c:\\%UserProfile%\\json', 'jsonDadosBiblioteca.zip', 'w', zipfile.ZIP_DEFLATED)
+        zf = os.path.join(os.sep, 'c:\\bibliotecaDados\\json', 'jsonDadosBiblioteca.zip')
+        arquivoZip = zipfile.ZipFile(zf,'w')
+
+        with open("c:\\bibliotecaDados\\json\\jsonbancoBiblioteca.json", "w") as arquivo:     
+            json.dump(bancoBiblioteca, arquivo, indent=4)
+        arquivoZip.write("c:\\bibliotecaDados\\json\\jsonbancoBiblioteca.json")
+        arquivoZip.close()
+        print("Arquivo Compactado!".center(52))
         
-        
-    arquivoZip.close()
-    return True
+        return bancoBiblioteca
+    
+    except:
+        print("Houve erro! Verifique! [menuAdministrativo/importarJSON()]")
+        time.sleep(3)
     
 
 # expostação banco de dados
@@ -166,3 +177,36 @@ def importarBD():
         return True
     else:
         return False
+    
+
+def criarDiretorioProjeto():
+    try:
+        os.makedirs
+        dir = os.path.join(os.sep, "c:\\", 'bibliotecaDados')
+        dr2 = os.path.join(os.sep, "c:\\bibliotecaDados", 'json')
+        dr3 = os.path.join(os.sep, "c:\\bibliotecaDados", 'bd')
+        
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        if not os.path.exists(dr2):
+            os.makedirs(dr2)
+        if not os.path.exists(dr3):
+            os.makedirs(dr3)
+            
+        return True
+    except:
+        print("Erro | menuAdministrativo.py/criarDiretorioProjeto()")
+        time.sleep(3)
+        return False
+    
+    
+def requestAplicacao():
+    
+    URL = "localhost:8080/dados"
+    
+    response = urllib.request.urlopen(URL)
+    
+    #headers = response.info()
+    
+    #print('DATA    : %s' %headers['date'])
+    print(response)
