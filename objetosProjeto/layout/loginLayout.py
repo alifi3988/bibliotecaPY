@@ -65,7 +65,7 @@ def login():
         lista = recuperarDados(recuperarDadosUsuarioExpecifico(loginUsuario)) # copiando a lista
         
         if lista != False:
-            if len(lista) != 0 and lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario and lista[0][5] == True:
+            if len(lista) != 0 and lista[0][2] == loginUsuario and lista[0][3] == senhaUsuario and lista[0][5] == 'True':
                 print("Dados conferem com o informado!".center(52))
                 
                 if loginUsuario == 'admin@':
