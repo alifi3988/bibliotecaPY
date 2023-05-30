@@ -42,8 +42,8 @@ def recuperarTodosDados():
         return False
 
 def recuperarSomenteIDUsuario(usuario):
-    sql = f"SELECT id FROM tb_usuarios WHERE login = '{usuario}'"
-    
+    sql =recuperarDadosUsuarioExpecifico(usuario)
+
     dados = recuperarDados(sql)
     
     if dados != False:
@@ -52,6 +52,6 @@ def recuperarSomenteIDUsuario(usuario):
         return False
 
 def modificarStatus(usuario):
-    sql = f"UPDATE tb_usuarios SET statusAssociativo = True WHERE login = {usuario}"
+    sql = f"UPDATE tb_usuarios SET statusAssociativo = '{True}' WHERE login = '{usuario}' "
     return modificacaoTable(sql)
     
