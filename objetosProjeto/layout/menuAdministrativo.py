@@ -1,6 +1,6 @@
-import io
 import os
 import time
+from objetosProjeto.db.conexaoDB import DadosWeb
 from objetosProjeto.db.conexaoDB import BKPBancoDeDados, RecuperarBancoDeDados
 from objetosProjeto.db.leitoresDB import recuperarTodosLeitores
 from objetosProjeto.db.livroDB import recuperarTodosLivros
@@ -8,7 +8,6 @@ from objetosProjeto.db.retiradaLivroDB import recuperarTodasRetiradas
 from objetosProjeto.db.usuarioDB import modificarStatus, recuperarSomenteIDUsuario, recuperarTodosDados
 import json
 import zipfile
-import urllib.request
 from urllib.request import urlopen
 
 # criação de um arquivo geral
@@ -26,6 +25,7 @@ def menuAdmSistema():
         print("[2] - Exportar Banco de dados")
         print("[3] - Importar WEB")
         print("[4] - Liberação de usuario")
+        print("[5] - Extração WEB")
         print("[0] - Sair")
         print("-"*52)
         resp = input(">> ").strip()
@@ -50,6 +50,9 @@ def menuAdmSistema():
             
         elif resp == "4":
             liberacaoUsuario()
+        
+        elif resp == '5':
+            exportarWeb()
 
         elif resp == '0':
             print("Saindo do modo administrador...")
@@ -242,8 +245,18 @@ def liberacaoUsuario():
             else:
                 print("Usuário não foi localizado!")
                 time.sleep(2)
-        
-  
+#############  
+
+# exportação Web
+def exportarWeb():
+    print("="*52)  
+    print(" * * * EXPORTAÇÃO WEB * * *".center(52))
+    print("="*52)  
+    
+    if DadosWeb() == True:
+        return True
+    else:
+        return False
   
 
 
