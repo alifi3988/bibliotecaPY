@@ -56,15 +56,8 @@ CREATE TABLE tb_usuarios (
         dataCriacao         DATE NOT NULL,
         statusAssociativo   BOOL NOT NULL
     );
-INSERT INTO "tb_usuarios" VALUES(1,'alifi','alifi','123','2023-05-17','false');
-INSERT INTO "tb_usuarios" VALUES(2,'alifi','alifi.santos','123','2023-05-17',0);
-INSERT INTO "tb_usuarios" VALUES(3,'alifi','alifi.estevam','123','2023-05-17','false');
-INSERT INTO "tb_usuarios" VALUES(4,'alifi','alifi.augusto','123','2023-05-17',0);
-INSERT INTO "tb_usuarios" VALUES(5,'alifi','alifi.teste','123','2023-05-17','False');
-INSERT INTO "tb_usuarios" VALUES(6,'Alifi Augusto','leonardo.tirado','123456','2023-05-17','False');
-INSERT INTO "tb_usuarios" VALUES(7,'Leonardo','leonardo','123','2023-05-18','False');
-INSERT INTO "tb_usuarios" VALUES(8,'Rafael','rafa87','123456','2023-05-18','False');
-INSERT INTO "tb_usuarios" VALUES(9,'admin','admin','admin','2023-05-19','False');
+INSERT INTO "tb_usuarios" VALUES(8,'Rafael','rafa87','123456','2023-05-18','True');
+INSERT INTO "tb_usuarios" VALUES(9,'admin','admin','admin','2023-05-19','True');
 INSERT INTO "tb_usuarios" VALUES(10,'ADMINISTRADOR','admin@','adminadmin','2023-05-25','True');
 DELETE FROM "sqlite_sequence";
 INSERT INTO "sqlite_sequence" VALUES('tb_usuarios',10);

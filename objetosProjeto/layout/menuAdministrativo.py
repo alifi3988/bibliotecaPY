@@ -1,4 +1,3 @@
-import io
 import os
 import time
 from objetosProjeto.db.conexaoDB import BKPBancoDeDados, RecuperarBancoDeDados
@@ -8,21 +7,19 @@ from objetosProjeto.db.retiradaLivroDB import recuperarTodasRetiradas
 from objetosProjeto.db.usuarioDB import modificarStatus, recuperarSomenteIDUsuario, recuperarTodosDados
 import json
 import zipfile
-import urllib.request
 from urllib.request import urlopen
 
 # criação de um arquivo geral
 def menuAdmSistema():
     while True:
         os.system("cls")
-        
         # criação dos diretórios principais
-        criarDiretorioProjeto()
+        #criarDiretorioProjeto()
         
         print("="*52)
         print("* * * A D M I N I S T R A D O R * * * ".center(52))
         print("="*52)
-        print("[1] - Importar todos os dados do BD")
+        print("[1] - Importar todos os dados do BD | JSON")
         print("[2] - Exportar Banco de dados")
         print("[3] - Importar WEB")
         print("[4] - Liberação de usuario")
@@ -32,7 +29,9 @@ def menuAdmSistema():
         
         # verificação
         if resp == '1':
+            # crição do diretório desejado JSON            
             arquivoJSON = importarJSON()
+            
             if arquivoJSON != False:
                 print("Realizado com sucesso...".center(52))
                 time.sleep(3)
@@ -52,8 +51,9 @@ def menuAdmSistema():
             liberacaoUsuario()
 
         elif resp == '0':
-            print("Saindo do modo administrador...")
+            print("Saindo do Sistema...")
             time.sleep(3)
+            exit()
             break
 
 # importação de usuários
@@ -62,7 +62,7 @@ def importarJSON():
     print("="*52)
     print(" * * * I M P O R T A R   J S O N   * * *".center(52))
     print("="*52)
-    
+    criarDiretorioProjetoJson()
     bancoBiblioteca = {'Historico_Usuarios': [], 'Historico_Livro':[], 'Historico_Leitores':[], 'Historico_Retirada':[]}
     
     # usuarios
@@ -137,15 +137,16 @@ def importarJSON():
     
     try:
         # realizando a conversão para Json e compactando
-        #arquivoZip = zipfile.ZipFile('c:\\%UserProfile%\\json', 'jsonDadosBiblioteca.zip', 'w', zipfile.ZIP_DEFLATED)
         zf = os.path.join(os.sep, 'c:\\bibliotecaDados\\json', 'jsonDadosBiblioteca.zip')
-        arquivoZip = zipfile.ZipFile(zf,'w')
 
+        arquivoZip = zipfile.ZipFile(zf,'w')
+        
         with open("c:\\bibliotecaDados\\json\\jsonbancoBiblioteca.json", "w") as arquivo:     
             json.dump(bancoBiblioteca, arquivo, indent=4)
         arquivoZip.write("c:\\bibliotecaDados\\json\\jsonbancoBiblioteca.json")
         arquivoZip.close()
         print("Arquivo Compactado!".center(52))
+        time.sleep(3)
         
         return bancoBiblioteca
     
@@ -155,6 +156,7 @@ def importarJSON():
     
 # expostação banco de dados
 def exportarBanco():
+    os.system("cls")
     print("="*52)  
     print(" * * * EXPORTAÇÃO DO BANCO DE DADOS * * *".center(52))
     print("="*52)  
@@ -179,26 +181,47 @@ def importarBD():
         return False
     
 # criação do diretório para exportação do JSON
-def criarDiretorioProjeto():
+def criarDiretorioProjetoJson():
     try:
         os.makedirs
         dir = os.path.join(os.sep, "c:\\", 'bibliotecaDados')
         dr2 = os.path.join(os.sep, "c:\\bibliotecaDados", 'json')
-        dr3 = os.path.join(os.sep, "c:\\bibliotecaDados", 'bd')
         
         if not os.path.exists(dir):
             os.makedirs(dir)
         if not os.path.exists(dr2):
             os.makedirs(dr2)
-        if not os.path.exists(dr3):
-            os.makedirs(dr3)
+
             
+        print(f"Diretório criado: {dir} | {dr2}")
+        time.sleep(3)
+        
         return True
     except:
-        print("Erro | menuAdministrativo.py/criarDiretorioProjeto()")
+        print("Erro: menuAdministrativo.py/criarDiretorioProjeto()")
         time.sleep(3)
         return False
   
+def criarDiretorioProjetoBD():
+    try:
+        os.makedirs
+        dir = os.path.join(os.sep, "c:\\", 'bibliotecaDados')
+        dr3 = os.path.join(os.sep, "c:\\bibliotecaDados", 'bd')
+        
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        if not os.path.exists(dr3):
+            os.makedirs(dr3)
+            
+        print(f"Diretório criado: {dir} | {dr3}")
+        time.sleep(3)
+        
+        return True
+    except:
+        print("Erro: menuAdministrativo.py/criarDiretorioProjeto()")
+        time.sleep(3)
+        return False
+    
   
 def liberacaoUsuario():
     while True:
@@ -220,18 +243,26 @@ def liberacaoUsuario():
             if retorno != False:
                 print("Usuario Localizado! Confirme os dados...")
                 print("-"*52)
-                print("Nome: {}")
-                print("Usuário: {}")
+                print(f"Nome: {retorno[0][1]}")
+                print(f"Usuário: {retorno[0][2]}")
                 print("-"*52)
                 while True:
-                    resp = input("Correto? [S/N]").strip().upper()
-                    if resp != "S" or resp != "N":
+                    resp = input("Correto? [S/N] \n>> ").strip().upper()
+                    
+                    if resp != "S" and resp != "N" and resp != '0':
                         print("Não reconheci o que foi informado! Informe novamente...")
+                    
                     elif resp =='S':
                         break
+                    
                     elif resp =='N':
                         liberacaoUsuario()
+                        
+                    elif resp == '0':
+                        menuAdmSistema()
+                        
                 retorno = modificarStatus(usuario)
+                
                 if retorno == True:
                     print("Usuário foi ativado!")
                     time.sleep(2)
@@ -243,12 +274,6 @@ def liberacaoUsuario():
                 print("Usuário não foi localizado!")
                 time.sleep(2)
         
-  
-  
-
-
-  
-
 # importação de dados WEB
 def requestAplicacao():
     

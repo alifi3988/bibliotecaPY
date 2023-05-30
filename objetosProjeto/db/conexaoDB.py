@@ -80,7 +80,7 @@ def modificacaoTable(sql):
         cursor = conn.cursor()
         try:
             # executando sql
-            resultado = cursor.execute(sql)
+            cursor.execute(sql)
 
             # salvando a alteração
             conn.commit()
