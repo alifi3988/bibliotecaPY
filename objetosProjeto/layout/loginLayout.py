@@ -115,9 +115,7 @@ def cadastroUsuario():
         # verificando
         if inserirUsuario(usuario) == True:
             print("Cadastro foi realizado com sucesso!".center(52))
-            for i in range(1,6):
-                print(f"{i}",end="...")
-                time.sleep(1)
+            time.sleep(3)
             break
         else:
             print("Erro no registro!")

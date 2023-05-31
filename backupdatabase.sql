@@ -86,8 +86,9 @@ INSERT INTO "tb_usuarios" VALUES(10,'ADMINISTRADOR','admin@','adminadmin','2023-
 INSERT INTO "tb_usuarios" VALUES(11,'Rafael','rafa87','123456','2023-05-29','True');
 INSERT INTO "tb_usuarios" VALUES(12,'admon@','','0','2023-05-29','False');
 INSERT INTO "tb_usuarios" VALUES(13,'Alifi Augusto','t_asantos','123456','2023-05-29','True');
+INSERT INTO "tb_usuarios" VALUES(14,'Alifi Augusto Estevam dos Santos','alifi.santos','12345678','2023-05-31','True');
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('tb_usuarios',13);
+INSERT INTO "sqlite_sequence" VALUES('tb_usuarios',14);
 INSERT INTO "sqlite_sequence" VALUES('tb_livros',11);
 INSERT INTO "sqlite_sequence" VALUES('tb_leitores',4);
 INSERT INTO "sqlite_sequence" VALUES('tb_livrosWEB',19);
