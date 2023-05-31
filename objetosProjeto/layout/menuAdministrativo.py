@@ -1,14 +1,17 @@
+import collections
+from lxml import html
 import os
 import time
-from objetosProjeto.db.conexaoDB import DadosWeb
+from click import pause
+import requests
 from objetosProjeto.db.conexaoDB import BKPBancoDeDados, RecuperarBancoDeDados
 from objetosProjeto.db.leitoresDB import recuperarTodosLeitores
 from objetosProjeto.db.livroDB import recuperarTodosLivros
 from objetosProjeto.db.retiradaLivroDB import recuperarTodasRetiradas
+from objetosProjeto.db.tableWebDB import criacaoTBWEB, insercaoDadosTBWEB, recuperarDadosWebBD
 from objetosProjeto.db.usuarioDB import modificarStatus, recuperarSomenteIDUsuario, recuperarTodosDados
 import json
 import zipfile
-from urllib.request import urlopen
 
 # criação de um arquivo geral
 def menuAdmSistema():
@@ -45,7 +48,6 @@ def menuAdmSistema():
         elif resp == '2':
             exportarBanco()
             
-            
         elif resp == '3':
             importarBD()
             
@@ -56,10 +58,10 @@ def menuAdmSistema():
             exportarWeb()
 
         elif resp == '0':
-            print("Saindo do Sistema...")
+            print("Saindo do ADMINISTRADOR!".center(52))
             time.sleep(3)
-            exit()
             break
+
 
 # importação de usuários
 def importarJSON():
@@ -278,40 +280,102 @@ def liberacaoUsuario():
             else:
                 print("Usuário não foi localizado!")
                 time.sleep(2)
-<<<<<<< HEAD
-#############  
 
 # exportação Web
 def exportarWeb():
     print("="*52)  
     print(" * * * EXPORTAÇÃO WEB * * *".center(52))
     print("="*52)  
+    criacaoTBWEB()
+
+    rec = requestAplicacao()
     
-    if DadosWeb() == True:
-        return True
-    else:
-        return False
-  
-
-
-  
-
-=======
+    if rec == True:
+        print("Recuperação WEB Realizada!".center(52))
         
->>>>>>> 3d73da57ebd5f442c59217673c1fc8b0163cc0fb
+        dadosRecuperados = recuperarDadosWebBD()
+        
+        print("-"*98)
+        print(f'{"DADOS RECUPERADOS WEB":^98}')
+        print('-'*98)
+        print(f'{"ID":^6} {"Titulo":<44} {"Autor":<40}')
+        print('-'*98)
+
+        for i in dadosRecuperados:
+            idLivro = i[0]
+            tituloLivro = i[1]
+            autorUnico = i[2]
+            print(f"{idLivro:^6} {tituloLivro:<44} {autorUnico:<40} ")
+        print('-'*98)
+        pause()
+        return True
+            
+    else:
+        print("Erro na Recuperação WEB!".center(52))
+        time.sleep(3)
+        return False
+
 # importação de dados WEB
 def requestAplicacao():
     
     try:
-        pagina = 'https://github.com/alifi3988/bibliotecaPY/blob/main/objetosProjeto/dadosProjeto.htm'
-        #headers = response.info()
-        
-        #print('DATA    : %s' %headers['date'])
-        with urlopen(pagina) as response:
-            body = response.read()
-        
-        todos_items = json.loads(body)
-        todos_items
+        url = "https://www.culturagenial.com/dicas-livros/"
+  
+
+        #Consulte o site e retorne o html para a variável 'page'
+        page = requests.get(url)
+        if page.status_code != 200:
+            print("Erro na página informada!")
+            return False
+        else:
+            tree = html.fromstring(page.text)
+            links = tree.xpath("//div[@class='container content-wrap']//h2['.' and em and ',']//text()") # pegando os dados com essas infromações em comum
             
+        num = ['1.', '2.', '3.', '4.', '5.', '6.', '7.', '8.', '9.', '10.', '11.', '12.', '13.', '14.', '15.',
+            '16.', '17.', '18.', '19.', '20.', "\\n"]
+        
+        Livros = collections.namedtuple("Livros", ["titulo", "autor"])
+        tituloLivro = ''
+        autorLivro = ''
+        
+        listaLivros = list()
+        
+        for i in range (len(links)):
+            palavraMontada = links[i]
+            
+            # se NÃO conter, quer dizer que é ou o nome do autor ou do livro
+            if not num.__contains__(palavraMontada.strip()):
+                
+                # removendo da palavra ", de " e subistituindo por vazio ou seja ""
+                if ", de " in palavraMontada:
+                    palavraMontada = palavraMontada.replace(", de ", "")
+                    autorLivro = f"{palavraMontada}"
+                    
+                else:
+                    for j in num:
+                        palavraMontada = palavraMontada.replace(j, "")
+                    tituloLivro = f"{palavraMontada}"
+                    tituloLivro = tituloLivro.strip()
+                
+            if autorLivro != '' and tituloLivro != '':
+                livro = Livros(tituloLivro, autorLivro)
+                listaLivros.append(livro)
+                autorLivro = ''
+                tituloLivro = ''
+        
+        for i in listaLivros:
+            tituloUnico = i.titulo
+            autorUnico = i.autor
+            try:
+                # inserindo no banco de dados
+                insercaoDadosTBWEB(tituloUnico, autorUnico)
+            except:
+                print("Verifique a Inserção da na TB_-EWB")
+                time.sleep(3)
+        return True
+        
     except:
-        print("Erro!")
+        print("Deu algo errado, verificar")
+        time.sleep(3)
+        return False
+    

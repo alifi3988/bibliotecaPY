@@ -1,7 +1,4 @@
-import collections
 from datetime import date
-from click import pause
-from tqdm import tqdm
 import time
 import os
 from getpass import getpass
@@ -15,34 +12,37 @@ from objetosProjeto.layout.menuLayout import menuInicial
 
 # mostrando o menu do login
 def menuLogin():
-    os.system("cls")
-    print("="*52)
-    print("* * * M E N U   L O G I N * * *".center(52))
-    print("="*52)
-    print("Selecione a opção:")
-    print('''[1] - Login\n[2] - Cadastro de Login\n[3] - Sobre \n[0] - Sair''')
-    print("="*52)
-    resposta = input(">> ")
-    
-    if resposta == "0":
-        print("Finalizando o Sistema....")
-        #time.sleep()
-        exit()
+    while True:
         
-    elif resposta == "1":
-        login()
+        os.system("cls")
         
-    elif resposta == "2":
-        if cadastroUsuario() == True:
-            return True
+        print("="*52)
+        print("* * * M E N U   L O G I N * * *".center(52))
+        print("="*52)
         
-    elif resposta =='3':
-        sobre()
+        print("Selecione a opção:")
+        print('''[1] - Login\n[2] - Cadastro de Login\n[3] - Sobre \n[0] - Sair''')
+        print("="*52)
+        resposta = input(">> ")
         
-    else:
-        print("Erro na informação passada! Tente novamente!")
-        time.sleep(3)
-        menuLogin()
+        if resposta == "0":
+            return False
+            
+        elif resposta == "1":
+            login()
+            
+        elif resposta == "2":
+            if cadastroUsuario() == True:
+                return True
+            
+        elif resposta =='3':
+            sobre.sobreAplicacao()
+            
+        else:
+            print("Erro na informação passada! Tente novamente!")
+            time.sleep(3)
+            menuLogin()
+        
 
 # realizando o login
 def login():

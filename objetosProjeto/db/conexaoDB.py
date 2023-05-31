@@ -1,10 +1,10 @@
 # Importações
+import collections
 import io
 import sqlite3
 import time
-from bs4 import BeautifulSoup
 from click import pause
-import urllib.request
+
 #from bs4 import BeautifulSoup
 
 # Realizando a criação de um banco de dados local (abrindo e fechando)
@@ -47,8 +47,6 @@ def insercaoDadosTabelas(sqlScript):
         conn.close()
         return True
     except sqlite3.Error as er:
-        print("Erro na inserção de dados na tabela.")
-        print(er)
         return False
 
 # buscando os dados da table e retornando em forma de lista
@@ -72,8 +70,7 @@ def recuperarDados(sql):
                 return False
             return listaDados
         except sqlite3.Error as er:
-            print("Erro na recuperação de dados.")
-            print(f"Erro: {er}")
+            print(f"{er}")
             return False
    
 # modificar table        
@@ -142,51 +139,7 @@ def RecuperarBancoDeDados(nome):
         print(f"Mensagem: {er}")
         time.sleep(3)
         return False
-    
 
-def DadosWeb():
-    #URL = "http://biblio.cps.sp.gov.br/"
-    #URL = "https://pt.wikipedia.org/wiki/Lista_de_capitais_do_Brasil"
-    wiki = "https://pt.wikipedia.org/wiki/Lista_de_capitais_do_Brasil"
-    pause()
-
-    #Consulte o site e retorne o html para a variável 'page'
-    page = urllib.request.urlopen(wiki)
-    pause()
-
-    #Parse o html na variável 'page' e armazene-o no formato BeautifulSoup
-    soup = BeautifulSoup(page, 'html5lib')
-    pause()
-
-    return True
-    '''all_table = SoupStrainer.find_all('table')
-    #gerando a lista em colunas
-    A=[]
-    B=[]
-    C=[]
-    D=[]
-    E=[]
-
-    for row in table.findAll("tr"): #para tudo que estiver em <tr>
-        cells = row.findAll('td') #variável para encontrar <td>
-    if len(cells)==5: #número de colunas
-        A.append(cells[0].find(text=True)) #iterando sobre cada linha
-        B.append(cells[1].find(text=True))
-        C.append(cells[2].find(text=True))
-        D.append(cells[3].find('a').text)
-        E.append(cells[4].find(text=True))
-
-    df = pd.DataFrame(index=A, columns=['Posição'])
-
-    df['Posição']=A
-    df['Estado']=B
-    df['Código/IBGE']=C
-    df['Capital']=D
-    df['Área']=E
-
-    df'''
-
-    
 # ================================================================================
 # ================================================================================
 

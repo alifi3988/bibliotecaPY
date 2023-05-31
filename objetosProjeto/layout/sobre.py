@@ -4,31 +4,17 @@ from click import pause
 
 
 def sobreAplicacao():
+    
+    frase = '''Aplicação desenvolvido por: \n\nÁLIFI AUGUSTO ESTEVAM DOS SANTOS\nRA: 2840482023005 \nalifi.santos@fatec.sp.gov.br\n\nRAFAEL AUGUSTO PEREIRA RODRIGUES\n2840482023032\nrafael.rodrigues81@fatec.sp.gov.br\n\nO projeto foi desenvolvido para a matéria de Tópicos Especiais em \nInformática, com o PROF. ME. FABRÍCIO GUSTAVO HENRIQUE.\nÉ um Sistema básico para Biblioteca, onde o usuário irá realizar \noperações fáceis (CADASTRO DE USUÁRIOS, LEITORES E LIVROS), \nalém de buscar por esses dados e exportar para um arquivo em Excel e \nJSON, e quando necessário DESABILITAR algum dos possíveis dados.\n\nFATEC Riebirão Preto/SP'''    
+    
+    
+    
+    
+    
+    
     os.system("cls")
     print("="*70)
     print(" * * * S O B R E * * * ".center(70))
     print("="*70)
-    print('''
-Aplicação desenvolvido por:  
-       
-ÁLIFI AUGUSTO ESTEVAM DOS SANTOS
-2840482023005
-alifi.santos@fatec.sp.gov.br
-
-RAFAEL AUGUSTO PEREIRA RODRIGUES
-2840482023032
-rafael.rodrigues81@fatec.sp.gov.br
-          
-O projeto foi desenvolvido para a matéria de
-Tópicos Especiais em Informática, com o 
-PROF. ME. FABRÍCIO GUSTAVO HENRIQUE.
-          
-O Projeto é um Sistema básico para Biblioteca, onde 
-o usuário irá realizar operações fáceis (CADASTRO DE 
-USUÁRIOS, LEITORES E LIVROS), além de buscar por 
-esses dados e exportar para um arquivo em Excel, 
-além do de arquivos JSON e quando necessário
-DESABILITAR algum dos possíveis dados.
-          
-FATEC Riebirão Preto/SP''')
+    print(f"{frase:^}")
     pause()
