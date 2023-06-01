@@ -1,11 +1,7 @@
-
-
 import os
 import time
-
 from objetosProjeto.db.relatoriosDB import recupearando_todos_leitores
 from objetosProjeto.relatórios.montagemArquivos import montagemArquivoExcel
-
 
 def gerar_relatorio_leitor():
     while True:

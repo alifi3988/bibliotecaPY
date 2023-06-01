@@ -1,7 +1,7 @@
 import os
 import time
 from objetosProjeto.db.relatoriosDB import *
-from objetosProjeto.relatórios.montagemArquivos import montagemArquivoExcel
+from objetosProjeto.relatórios.montagemArquivos import montagemArquivoExcel, montagemArquivoExcelLivro
 
 # Função para gerar o relatório de livros | Menu de relatórios
 def gerar_relatorio_livros():
@@ -60,7 +60,7 @@ def relatorioGeral():
     dadosRecuperado = recupearando_todos_dados()
     if dadosRecuperado != False:
         # chamar para realizar o relatorio
-        respCriacaoArquivo = montagemArquivoExcel(dadosRecuperado, 'RelatorioGeralLivros')
+        respCriacaoArquivo = montagemArquivoExcelLivro(dadosRecuperado, 'RelatorioGeralLivros')
         if respCriacaoArquivo != False:
             print(f"Arquivo criado! {respCriacaoArquivo}")
             time.sleep(3)
@@ -80,7 +80,7 @@ def relatorioLivrosRetirados():
     dadosRecuperado = recuperando_dados_retirados()
     if dadosRecuperado != False:
         # chamar para realizar o relatorio
-        respCriacaoArquivo = montagemArquivoExcel(dadosRecuperado, 'RelatorioLivrosRetirados')
+        respCriacaoArquivo = montagemArquivoExcelLivro(dadosRecuperado, 'RelatorioLivrosRetirados')
         if respCriacaoArquivo != False:
             print(f"Arquivo criado! {respCriacaoArquivo}")
             time.sleep(3)
@@ -100,7 +100,7 @@ def relatorioLivrosDisponiveis():
     dadosRecuperado = recuperando_dados_nao_retirados()
     if dadosRecuperado != False:
         # chamar para realizar o relatorio
-        respCriacaoArquivo = montagemArquivoExcel(dadosRecuperado, 'RelatorioLivrosDisponiveis')
+        respCriacaoArquivo = montagemArquivoExcelLivro(dadosRecuperado, 'RelatorioLivrosDisponiveis')
         if respCriacaoArquivo != False:
             print(f"Arquivo criado! {respCriacaoArquivo}")
             time.sleep(3)
