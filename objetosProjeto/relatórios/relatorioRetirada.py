@@ -1,5 +1,3 @@
-
-
 import os
 import time
 from objetosProjeto.db.relatoriosDB import recuperando_relatorio_retirada

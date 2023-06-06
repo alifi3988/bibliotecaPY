@@ -1,4 +1,3 @@
-
 import time
 from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, recuperarDados
 

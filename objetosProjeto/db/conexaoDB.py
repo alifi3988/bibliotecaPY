@@ -1,9 +1,7 @@
 # Importações
-import collections
 import io
 import sqlite3
 import time
-from click import pause
 
 #from bs4 import BeautifulSoup
 

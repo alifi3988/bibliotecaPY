@@ -1,4 +1,3 @@
-from click import pause
 from objetosProjeto.db.conexaoDB import criacaoTabelasDB, insercaoDadosTabelas, modificacaoTable, recuperarDados
 
 
